@@ -4,6 +4,7 @@
 
 #include "GameData.h"
 
+
 namespace Assets
 {
 	extern Sound crash{};
@@ -20,7 +21,7 @@ using namespace Globals;
 
 
 
-static void LoadGame(Player& player)
+static void LoadGame(Player& player, Wall* walls)
 {
 	gamePlayBacground = LoadTexture("Assets/Images/background.png");
 
@@ -33,6 +34,7 @@ static void LoadGame(Player& player)
 	pauseButtonPos.y = 15.0f;
 
 	LoadPlayer(player);
+	LoadWalls(walls);
 }
 
 static void GetInput(Player& player, GameSceen& currentSceen)
@@ -40,35 +42,39 @@ static void GetInput(Player& player, GameSceen& currentSceen)
 	GetPlayerInput(player, currentSceen);
 }
 
-static void Update(Player& player)
+static void Update(Player& player, Wall* walls)
 {
 	UpdatePlayer(player);
+
+	UpdateWalls(walls);
 }
 
-static void Draw(Player& player)
+static void Draw(Player& player, Wall* walls)
 {
 	DrawTextureEx(gamePlayBacground, { 0,0 }, 0, 1.0, WHITE);
 
 	DrawPlayer(player);
+
+	DrawWalls(walls);
 }
 
-static void Loop(Player& player, GameSceen& currentSceen)
+static void Loop(Player& player, Wall* walls, GameSceen& currentSceen)
 {
 	GetInput(player, currentSceen);
 
-	Update(player);
+	Update(player, walls);
 
-	Draw(player);
+	Draw(player, walls);
 }
 
-void PlayGame(Player& player, GameSceen& currentSceen)
+void PlayGame(Player& player, Wall* walls, GameSceen& currentSceen)
 {
 	if (player.isLoading)
 	{
-		LoadGame(player);
+		LoadGame(player, walls);
 
 		player.isLoading = false;
 	}
 
-	Loop(player, currentSceen);
+	Loop(player, walls, currentSceen);
 }

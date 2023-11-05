@@ -16,6 +16,7 @@ void LoadPlayer(Player& player)
     player.position.y = screenCenter.y - player.texture.height / 2;
     player.source = { 0, 0, static_cast<float>(player.texture.width), static_cast<float>(player.texture.height) };
     player.totalPoints = 0;
+    player.thousandCounter = 0;
     player.availableLives = 3;
 
     //player.shoot = LoadSound("Assets/Sounds/shoot.wav");
@@ -49,11 +50,11 @@ void GetPlayerInput(Player& player, GameSceen& currentSceen)
 {
     if (IsMouseButtonDown(MOUSE_RIGHT_BUTTON))
     {
-        player.speed.y = 100.0f;
+        player.speed.y = player.maxSpeed;
     }
     else if (IsMouseButtonDown(MOUSE_LEFT_BUTTON))
     {
-        player.speed.y = -100.0f;
+        player.speed.y = -player.maxSpeed;
     }
     else
     {
@@ -70,7 +71,7 @@ void UpdatePlayer(Player& player)
 {
     if (player.totalPoints >= player.thousandCounter + 1000)
     {
-       // PlaySound(player.thousand);
+        PlaySound(player.thousand);
 
         player.thousandCounter += 1000;
     }

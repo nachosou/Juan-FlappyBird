@@ -7,13 +7,14 @@ struct Player
 {
 	Vector2 position{};
 	Vector2 speed{};
+	float maxSpeed = 150.0f;
 	int availableLives{};
 	int totalPoints{};
 	bool isAlive{};
 	bool isLoading = true;
 
-	int thousandCounter;
-	Sound thousand;
+	int thousandCounter{};
+	Sound thousand{};
 
 	Texture2D texture{};
 	Rectangle source{};

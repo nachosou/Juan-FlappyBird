@@ -4,6 +4,7 @@
 
 #include "GameData.h"
 #include "Player.h"
+#include "Wall.h"
 #include "MenuManager.h"
 #include "GamePlay.h"
 
@@ -15,6 +16,7 @@ void RunGame()
 	GameSceen currentSceen = GameSceen::GAME;
 
 	Player player;
+	Wall* walls = new Wall[totalWalls];
 
 	srand(static_cast<unsigned>(time(NULL)));
 
@@ -42,7 +44,7 @@ void RunGame()
 		}
 		case GameSceen::GAME:
 		{
-			PlayGame(player, currentSceen);
+			PlayGame(player, walls, currentSceen);
 			break;
 		}
 		case GameSceen::RESULTS:
@@ -68,6 +70,8 @@ void RunGame()
 		case GameSceen::EXIT:
 		{
 			CloseWindow();
+
+			delete[] walls;
 
 			break;
 		}
