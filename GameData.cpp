@@ -7,7 +7,7 @@ namespace Globals
 	extern const int screenHeight = 768;
 	extern Vector2 screenCenter = { screenWidth / 2, screenHeight / 2};
 
-	extern int totalWalls = 4;
+	extern int totalWalls = 6;
 	extern double lastWall{};
 
 	extern Music menuMusic{};

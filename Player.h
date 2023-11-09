@@ -8,6 +8,8 @@ struct Player
 	Vector2 position{};
 	Vector2 speed{};
 	float maxSpeed = 150.0f;
+	float gravity = 0.5f;
+	float jumpForce = -300.0f;
 	int availableLives{};
 	int totalPoints{};
 	bool isAlive{};

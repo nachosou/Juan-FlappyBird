@@ -28,21 +28,21 @@ static void MovePlayer(Player& player)
     player.position.x += player.speed.x * GetFrameTime();
     player.position.y += player.speed.y * GetFrameTime();
 
-    if (player.position.x + (player.texture.width / 2.0f) > screenWidth)
+    if (player.position.x + (player.texture.width) > screenWidth)
     {
-        player.position.x = screenWidth - (player.texture.width / 2.0f);
+        player.position.x = static_cast<float>(screenWidth - (player.texture.width));
     }
-    else if (player.position.x - (player.texture.width / 2.0f) < 0.0f)
+    else if (player.position.x < 0.0f)
     {
-        player.position.x = (player.texture.width / 2.0f);
+        player.position.x = 0.0f;
     }
-    else if (player.position.y + (player.texture.height / 2.0f) > screenHeight)
+    else if (player.position.y + (player.texture.height) > screenHeight)
     {
-        player.position.y = screenHeight - (player.texture.height / 2.0f);
+        player.position.y = static_cast<float>(screenHeight - (player.texture.height));
     }
-    else if (player.position.y - (player.texture.height / 2.0f) < 0.0f)
+    else if (player.position.y < 0.0f)
     {
-        player.position.y = (player.texture.height / 2.0f);
+        player.position.y = 0.0f;
     }
 }
 
@@ -56,9 +56,18 @@ void GetPlayerInput(Player& player, GameSceen& currentSceen)
     {
         player.speed.y = -player.maxSpeed;
     }
+    else if (IsKeyPressed(KEY_SPACE))
+    {
+        player.speed.y = player.jumpForce;
+    }
     else
     {
-        player.speed.y = 0.0f;
+        player.speed.y += player.gravity;
+
+        if (player.speed.y > player.maxSpeed)
+        {
+            player.speed.y = player.maxSpeed;
+        }
     }
 
     if (IsKeyDown(KEY_ESCAPE))

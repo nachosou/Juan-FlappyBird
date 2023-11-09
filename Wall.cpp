@@ -13,7 +13,7 @@ void LoadWalls(Wall* walls)
         walls[i].position.x = static_cast<float>(screenWidth);
         walls[i].position.y = static_cast<float>(GetRandomValue(0, screenHeight - walls[i].texture.height));
         walls[i].source = { 0, 0, static_cast<float>(walls[i].texture.width), static_cast<float>(walls[i].texture.height) };
-        walls[i].speed.x = 90.0f;
+        walls[i].speed.x = 40.0f;
     }
 }
 
