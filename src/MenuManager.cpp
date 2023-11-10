@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-#include "GameData.h"
+#include "GamePlay.h"
 
 
 namespace Assets
@@ -113,422 +113,422 @@ void InitMenu()
 	menuButtonPos.y = 15.0f;
 }
 
-//static void GetInput(GameSceen& currentSceen)
-//{
-//	int mouseX = GetMouseX();
-//	int mouseY = GetMouseY();
-//
-//	if (currentSceen == GameSceen::MENU)
-//	{
-//		if ((mouseX > playPosContainer.x && mouseX < playPosContainer.x + smallContainer.width) && (mouseY > playPosContainer.y && mouseY < playPosContainer.y + smallContainer.height))
-//		{
-//			DrawTextEx(font, "Play", playPos, fontSize, spacing, ORANGE);
-//
-//			if (!isClicking)
-//			{
-//				isClicking = true;
-//
-//				PlaySound(click);
-//			}
-//
-//			if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
-//			{
-//				PlaySound(clickPressed);
-//				StopMusicStream(menuMusic);
-//				PlayMusicStream(gameLoopMusic);
-//				currentSceen = GameSceen::GAME;
-//			}
-//		}
-//		else if ((mouseX > instructionsPosContainer.x && mouseX < instructionsPosContainer.x + largeContainer.width) && (mouseY > instructionsPosContainer.y && mouseY < instructionsPosContainer.y + largeContainer.height))
-//		{
-//			DrawTextEx(font, "Instructions", instructionsPos, fontSize, instrucrtionsSpacing, ORANGE);
-//
-//			if (!isClicking)
-//			{
-//				isClicking = true;
-//
-//				PlaySound(click);
-//			}
-//
-//			if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
-//			{
-//				PlaySound(clickPressed);
-//				currentSceen = GameSceen::INSTRUCTIONS;
-//			}
-//		}
-//		else if ((mouseX > creditsPosContainer.x && mouseX < creditsPosContainer.x + mediumContainer.width) && (mouseY > creditsPosContainer.y && mouseY < creditsPosContainer.y + mediumContainer.height))
-//		{
-//			DrawTextEx(font, "Credits", creditsPos, fontSize, 3, ORANGE);
-//
-//			if (!isClicking)
-//			{
-//				isClicking = true;
-//
-//				PlaySound(click);
-//			}
-//
-//			if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
-//			{
-//				PlaySound(clickPressed);
-//				currentSceen = GameSceen::CREDITS;
-//			}
-//		}
-//		else if ((mouseX > exitPosContainer.x && mouseX < exitPosContainer.x + smallContainer.width) && (mouseY > exitPosContainer.y && mouseY < exitPosContainer.y + smallContainer.height))
-//		{
-//			DrawTextEx(font, "Exit", exitPos, fontSize, spacing, ORANGE);
-//
-//			if (!isClicking)
-//			{
-//				isClicking = true;
-//
-//				PlaySound(click);
-//			}
-//
-//			if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
-//			{
-//				PlaySound(clickPressed);
-//				currentSceen = GameSceen::EXIT;
-//			}
-//		}
-//		else
-//		{
-//			isClicking = false;
-//		}
-//	}
-//	else
-//	{
-//		if (IsKeyPressed(KEY_ESCAPE))
-//		{
-//			currentSceen = GameSceen::MENU;
-//		}
-//		else if ((mouseX > backButtonPos.x && mouseX < backButtonPos.x + backButton.width) && (mouseY > backButtonPos.y && mouseY < backButtonPos.y + backButton.height))
-//		{
-//			DrawTextureV(backButtonAct, backButtonPos, WHITE);
-//
-//			if (!isClicking)
-//			{
-//				isClicking = true;
-//
-//				PlaySound(click);
-//			}
-//
-//			if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
-//			{
-//				PlaySound(clickPressed);
-//				currentSceen = GameSceen::MENU;
-//			}
-//		}
-//		else if (currentSceen == GameSceen::CREDITS && ((mouseX > gitHubPos.x && mouseX < gitHubPos.x + gitHubSize.x) && (mouseY > gitHubPos.y && mouseY < gitHubPos.y + gitHubSize.y)))
-//		{		
-//			DrawTextEx(font, "https://github.com/juandigilio", gitHubPos, fontSize * 0.2f, spacing / 8.0f, GREEN);
-//
-//			if (!isClicking)
-//			{
-//				isClicking = true;
-//
-//				PlaySound(click);
-//			}
-//
-//			if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
-//			{
-//				PlaySound(clickPressed);
-//				OpenURL("https://github.com/juandigilio");
-//			}	
-//		}
-//		else if (currentSceen == GameSceen::CREDITS && ((mouseX > itchioPos.x && mouseX < itchioPos.x + itchioSize.x) && (mouseY > itchioPos.y && mouseY < itchioPos.y + itchioSize.y)))
-//		{
-//			DrawTextEx(font, "https://juandigilio.itch.io", itchioPos, fontSize * 0.2f, spacing / 8.0f, GREEN);
-//
-//			if (!isClicking)
-//			{
-//				isClicking = true;
-//
-//				PlaySound(click);
-//			}
-//
-//			if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
-//			{
-//				PlaySound(clickPressed);
-//				OpenURL("https://juandigilio.itch.io");
-//			}
-//		}
-//		else
-//		{
-//			isClicking = false;
-//		}
-//	}
-//
-//}
-//
-//static void DrawMain()
-//{
-//	DrawTexture(background, 0, 0, WHITE);
-//	DrawTextureEx(smallContainer, playPosContainer, 0, 1.0, WHITE);
-//	DrawTextureEx(largeContainer, instructionsPosContainer, 0, 1.0, WHITE);
-//	DrawTextureEx(mediumContainer, creditsPosContainer, 0, 1.0, WHITE);
-//	DrawTextureEx(smallContainer, exitPosContainer, 0, 1.0, WHITE);
-//
-//	DrawTextEx(font, "Play", playPos, fontSize, spacing, RAYWHITE);
-//	DrawTextEx(font, "Instructions", instructionsPos, fontSize, instrucrtionsSpacing, RAYWHITE);
-//	DrawTextEx(font, "Credits", creditsPos, fontSize, 3, RAYWHITE);
-//	DrawTextEx(font, "Exit", exitPos, fontSize, spacing, RAYWHITE);
-//}
-//
-//static void ShowMenu(GameSceen& currentSceen)
-//{
-//	DrawMain();
-//
-//	UpdateMusicStream(menuMusic);
-//
-//	GetInput(currentSceen);
-//}
+static void GetInput(GameSceen& currentSceen)
+{
+	int mouseX = GetMouseX();
+	int mouseY = GetMouseY();
 
-//static void DrawInstrucions()
-//{
-//	bigWindowPos.x = (screenWidth / 2.0f) - (bigWindow.width / 2.0f);
-//	bigWindowPos.y = (screenHeight / 2.0f) - (bigWindow.height / 2.0f);
-//
-//	Vector2 textPos;
-//
-//	DrawTexture(background, 0, 0, WHITE);
-//	DrawTextureV(bigWindow, bigWindowPos, WHITE);
-//	DrawTextureV(backButton, backButtonPos, WHITE);
-//
-//	textPos.x = (screenWidth / 2) - MeasureTextEx(font, "INSTRUCTIONS", fontSize * 0.85f, spacing / 2.0f).x / 2.0f;
-//	textPos.y = (screenHeight / 6) - fontSize + 10;
-//	DrawTextEx(font, "INSTRUCTIONS", textPos, fontSize * 0.85f, spacing / 2.0f, RAYWHITE);
-//
-//	textPos.x = (screenWidth / 2) - MeasureTextEx(font, "Press left click once to shoot and get pressed", fontSize / 4.0f, spacing / 4.0f).x / 2.0f;
-//	textPos.y = (screenHeight / 5) + (fontSize) - 20;
-//	DrawTextEx(font, "Press once left click to shoot and get pressed", textPos, fontSize / 4.0f, spacing / 4.0f, RAYWHITE);
-//
-//	textPos.x = (screenWidth / 2) - MeasureTextEx(font, "right click to acelerate, ship will allways follow", fontSize / 4.0f, spacing / 4.0f).x / 2.0f;
-//	textPos.y += 40;
-//	DrawTextEx(font, "right click to acelerate, ship will allways follow", textPos, fontSize / 4.0f, spacing / 4.0f, RAYWHITE);
-//
-//	textPos.x = (screenWidth / 2) - MeasureTextEx(font, "mouse arrow. Destroy as many asteroids as possible", fontSize / 4.0f, spacing / 4.0f).x / 2.0f;
-//	textPos.y += 40;
-//	DrawTextEx(font, "mouse arrow. Destroy as many asteroids as possible", textPos, fontSize / 4.0f, spacing / 4.0f, RAYWHITE);
-//
-//	textPos.x = (screenWidth / 2) - MeasureTextEx(font, "and set the new record! Game will end when you", fontSize / 4.0f, spacing / 4.0f).x / 2.0f;
-//	textPos.y += 40;
-//	DrawTextEx(font, "and set the new record! Game will end when you", textPos, fontSize / 4.0f, spacing / 4.0f, RAYWHITE);
-//
-//	textPos.x = (screenWidth / 2) - MeasureTextEx(font, "loose all your lives, but there is not a win", fontSize / 4.0f, spacing / 4.0f).x / 2.0f;
-//	textPos.y += 40;
-//	DrawTextEx(font, "loose all your lives, but there is not a win", textPos, fontSize / 4.0f, spacing / 4.0f, RAYWHITE);
-//
-//	textPos.x = (screenWidth / 2) - MeasureTextEx(font, "condition, it's just a highest score comp.", fontSize / 4.0f, spacing / 4.0f).x / 2.0f;
-//	textPos.y += 40;
-//	DrawTextEx(font, "condition, it's just a highest score comp.", textPos, fontSize / 4.0f, spacing / 4.0f, RAYWHITE);
-//
-//	textPos.x = (screenWidth / 2) - MeasureTextEx(font, "(Press ESC to pause)", fontSize / 3.0f, spacing / 3.0f).x / 2.0f;
-//	textPos.y += 160;
-//	DrawTextEx(font, "(Press ESC to pause)", textPos, fontSize / 3.0f, spacing / 3.0f, RAYWHITE);
-//}
-//
-//static void ShowInstructions(GameSceen& currentSceen)
-//{
-//	DrawInstrucions();
-//
-//	UpdateMusicStream(menuMusic);
-//
-//	GetInput(currentSceen);
-//}
-//
-//static void DrawCredits()
-//{
-//	Vector2 textPos;
-//
-//	smallWindowPos.x = (screenWidth / 2.0f) - (smallWindow.width / 2.0f);
-//	smallWindowPos.y = (screenHeight / 2.0f) - (smallWindow.height / 2.0f) + 10.0f;
-//
-//	DrawTexture(background, 0, 0, WHITE);
-//	DrawTextureV(smallWindow, smallWindowPos, WHITE);
-//	DrawTextureV(backButton, backButtonPos, WHITE);
-//
-//	textPos.x = (screenWidth / 2) - MeasureTextEx(font, "Created by Juan Digilio", fontSize * 0.6f, spacing / 4.0f).x / 2.0f;
-//	textPos.y = smallWindowPos.y - 130;
-//	DrawTextEx(font, "Created by Juan Digilio", textPos, fontSize * 0.6f, spacing / 4.0f, RAYWHITE);
-//
-//	textPos.x = (screenWidth / 2) - MeasureTextEx(font, "Assets author:	MattWalkden", fontSize * 0.3f, spacing / 8.0f).x / 2.0f;
-//	textPos.y += 55;
-//	DrawTextEx(font, "Assets author: MattWalkden", textPos, fontSize * 0.3f, spacing / 8.0f, RAYWHITE);
-//
-//	textPos.x = (screenWidth / 2) - MeasureTextEx(font, "Downloaded from craftpix.net", fontSize * 0.3f, spacing / 8.0f).x / 2.0f;
-//	textPos.y += 20;
-//	DrawTextEx(font, "Downloaded from craftpix.net", textPos, fontSize * 0.3f, spacing / 8.0f, RAYWHITE);
-//	
-//	textPos.x = (screenWidth / 2) - MeasureTextEx(font, "This is remake of the classic", fontSize * 0.2f, spacing / 8.0f).x / 2.0f;
-//	textPos.y += 90;
-//	DrawTextEx(font, "This is remake of the classic", textPos, fontSize * 0.2f, spacing / 8.0f, RAYWHITE);
-//
-//	textPos.x = (screenWidth / 2) - MeasureTextEx(font, "Asteroids game made in raylib for my", fontSize * 0.2f, spacing / 8.0f).x / 2.0f;
-//	textPos.y += 20;
-//	DrawTextEx(font, "Asteroids game made in raylib for my", textPos, fontSize * 0.2f, spacing / 8.0f, RAYWHITE);
-//
-//	textPos.x = (screenWidth / 2) - MeasureTextEx(font, "coursing at Image-Campus in my first", fontSize * 0.2f, spacing / 8.0f).x / 2.0f;
-//	textPos.y += 20;
-//	DrawTextEx(font, "coursing at Image-Campus in my first", textPos, fontSize * 0.2f, spacing / 8.0f, RAYWHITE);
-//
-//	textPos.x = (screenWidth / 2) - MeasureTextEx(font, "year of video games development.", fontSize * 0.2f, spacing / 8.0f).x / 2.0f;
-//	textPos.y += 20;
-//	DrawTextEx(font, "year of video games development.", textPos, fontSize * 0.2f, spacing / 8.0f, RAYWHITE);
-//
-//	textPos.x = (screenWidth / 2) - MeasureTextEx(font, "The code is open source and you", fontSize * 0.2f, spacing / 8.0f).x / 2.0f;
-//	textPos.y += 40;
-//	DrawTextEx(font, "The code is open source and you", textPos, fontSize * 0.2f, spacing / 8.0f, RAYWHITE);
-//
-//	textPos.x = (screenWidth / 2) - MeasureTextEx(font, "can find it in my GitHub", fontSize * 0.2f, spacing / 8.0f).x / 2.0f;
-//	textPos.y += 20;
-//	DrawTextEx(font, "can find it in my GitHub", textPos, fontSize * 0.2f, spacing / 8.0f, RAYWHITE);
-//
-//	gitHubSize = MeasureTextEx(font, "https://github.com/juandigilio", fontSize * 0.2f, spacing / 8.0f);
-//	itchioSize = MeasureTextEx(font, "https://juandigilio.itch.io/", fontSize * 0.2f, spacing / 8.0f);
-//
-//	gitHubPos.x = (screenWidth / 2) - gitHubSize.x / 2.0f;
-//	gitHubPos.y = textPos.y + 30;
-//	DrawTextEx(font, "https://github.com/juandigilio", gitHubPos, fontSize * 0.2f, spacing / 8.0f, RAYWHITE);
-//
-//	itchioPos.x = (screenWidth / 2) - itchioSize.x / 2.0f;
-//	itchioPos.y = gitHubPos.y + 20;
-//	DrawTextEx(font, "https://juandigilio.itch.io", itchioPos, fontSize * 0.2f, spacing / 8.0f, RAYWHITE);
-//}
-//
-//static void ShowCredits(GameSceen& currentSceen)
-//{
-//	DrawCredits();
-//
-//	UpdateMusicStream(menuMusic);
-//
-//	GetInput(currentSceen);
-//}
-//
-//static void GetPausedInput(GameSceen& currentSceen)
-//{
-//	int mouseX = GetMouseX();
-//	int mouseY = GetMouseY();
-//
-//	if ((mouseX > backButtonPos.x && mouseX < backButtonPos.x + backButton.width) && (mouseY > backButtonPos.y && mouseY < backButtonPos.y + backButton.height))
-//	{
-//		DrawTextureV(backButtonAct, backButtonPos, WHITE);
-//
-//		if (!isClicking)
-//		{
-//			isClicking = true;
-//
-//			PlaySound(click);
-//		}
-//
-//		if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
-//		{
-//			PlaySound(clickPressed);
-//			currentSceen = GameSceen::GAME;
-//		}
-//	}
-//	else if ((mouseX > menuButtonPos.x && mouseX < menuButtonPos.x + menuButton.width) && (mouseY > menuButtonPos.y && mouseY < menuButtonPos.y + menuButton.height))
-//	{
-//		DrawTextureV(menuButtonAct, menuButtonPos, WHITE);
-//
-//		if (!isClicking)
-//		{
-//			isClicking = true;
-//
-//			PlaySound(click);
-//		}
-//
-//		if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
-//		{
-//			PlaySound(clickPressed);
-//			currentSceen = GameSceen::MENU;
-//			loading = true;
-//			StopMusicStream(gameLoopMusic);
-//			PlayMusicStream(menuMusic);
-//		}
-//	}
-//	else if ((mouseX > exitButtonPos.x && mouseX < exitButtonPos.x + exitButton.width) && (mouseY > exitButtonPos.y && mouseY < exitButtonPos.y + exitButton.height))
-//	{
-//		DrawTextureV(exitButtonAct, exitButtonPos, WHITE);
-//
-//		if (!isClicking)
-//		{
-//			isClicking = true;
-//
-//			PlaySound(click);
-//		}
-//
-//		if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
-//		{
-//			PlaySound(clickPressed);
-//			currentSceen = GameSceen::EXIT;
-//		}
-//	}
-//	else
-//	{
-//		isClicking = false;
-//	}
-//
-//}
-//
-//static void PauseGame(Player player, Asteroid* asteroids, Asteroid* halfAsteroids, Asteroid* quarterAsteroids, GameSceen& currentSceen)
-//{
-//	DrawGame(player, asteroids, halfAsteroids, quarterAsteroids);
-//
-//	smallWindowPos.x = (screenWidth / 2.0f) - (smallWindow.width / 2.0f);
-//	smallWindowPos.y = (screenHeight / 2.0f) - (smallWindow.height / 2.0f);
-//
-//	DrawTextureV(smallWindow, smallWindowPos, WHITE);
-//	DrawTextureV(backButton, backButtonPos, WHITE);
-//	DrawTextureV(menuButton, menuButtonPos, WHITE);
-//	DrawTextureV(exitButton, exitButtonPos, WHITE);
-//
-//	Vector2 textPos;
-//
-//	textPos.x = (screenWidth / 2) - MeasureTextEx(font, "PAUSED GAME", fontSize * 0.45f, spacing).x / 2.0f;
-//	textPos.y = smallWindowPos.y + 45.0f;
-//	DrawTextEx(font, "PAUSED GAME", textPos, fontSize * 0.45f, spacing, RAYWHITE);
-//
-//	textPos.x = (screenWidth / 2) - MeasureTextEx(font, "Press ESC to continue", fontSize * 0.35f, spacing / 8.0f).x / 2.0f;
-//	textPos.y += 90;
-//	DrawTextEx(font, "Press ESC to continue", textPos, fontSize * 0.35f, spacing / 8.0f, RAYWHITE);
-//
-//	GetPausedInput(currentSceen);
-//}
-//
-//static void DrawResults(Player player)
-//{
-//	Vector2 textPos;
-//
-//	smallWindowPos.x = (screenWidth / 2.0f) - (smallWindow.width / 2.0f);
-//	smallWindowPos.y = (screenHeight / 2.0f) - (smallWindow.height / 2.0f);
-//
-//	DrawTexture(background, 0, 0, WHITE);
-//	DrawTextureV(smallWindow, smallWindowPos, WHITE);
-//	DrawTextureV(backButton, backButtonPos, WHITE);
-//
-//	textPos.x = (screenWidth / 2) - MeasureTextEx(font, "RESULTS", fontSize * 0.6f, spacing / 4.0f).x / 2.0f;
-//	textPos.y = smallWindowPos.y + 30;
-//	DrawTextEx(font, "RESULTS", textPos, fontSize * 0.6f, spacing / 4.0f, RAYWHITE);
-//
-//	textPos.x = (screenWidth / 2) - MeasureTextEx(font, "Your score:     ", fontSize * 0.4f, spacing / 8.0f).x / 2.0f;
-//	textPos.y += 75;
-//	DrawTextEx(font, "Your score: ", textPos, fontSize * 0.4f, spacing / 8.0f, RAYWHITE);
-//
-//	textPos.x += MeasureTextEx(font, "Your score: ", fontSize * 0.4f, spacing / 8.0f).x;
-//	DrawTextEx(font, TextFormat("%01i", player.totalPoints), textPos, fontSize * 0.4f, spacing / 8.0f, RAYWHITE);
-//
-//	textPos.x = (screenWidth / 2) - MeasureTextEx(font, "High score:     ", fontSize * 0.4f, spacing / 8.0f).x / 2.0f;
-//	textPos.y += 40;
-//	DrawTextEx(font, "High score: ", textPos, fontSize * 0.4f, spacing / 8.0f, RAYWHITE);
-//
-//	textPos.x += MeasureTextEx(font, "High score: ", fontSize * 0.4f, spacing / 8.0f).x;
-//	DrawTextEx(font, TextFormat("%01i", highScore), textPos, fontSize * 0.4f, spacing / 8.0f, RAYWHITE);
-//}
-//
-//static void ShowResults(Player& player, GameSceen& currentSceen)
-//{
-//	DrawResults(player);
-//
-//	GetInput(currentSceen);
-//}
+	if (currentSceen == GameSceen::MENU)
+	{
+		if ((mouseX > playPosContainer.x && mouseX < playPosContainer.x + smallContainer.width) && (mouseY > playPosContainer.y && mouseY < playPosContainer.y + smallContainer.height))
+		{
+			DrawTextEx(font, "Play", playPos, fontSize, spacing, ORANGE);
+
+			if (!isClicking)
+			{
+				isClicking = true;
+
+				PlaySound(click);
+			}
+
+			if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+			{
+				PlaySound(clickPressed);
+				StopMusicStream(menuMusic);
+				PlayMusicStream(gameLoopMusic);
+				currentSceen = GameSceen::GAME;
+			}
+		}
+		else if ((mouseX > instructionsPosContainer.x && mouseX < instructionsPosContainer.x + largeContainer.width) && (mouseY > instructionsPosContainer.y && mouseY < instructionsPosContainer.y + largeContainer.height))
+		{
+			DrawTextEx(font, "Instructions", instructionsPos, fontSize, instrucrtionsSpacing, ORANGE);
+
+			if (!isClicking)
+			{
+				isClicking = true;
+
+				PlaySound(click);
+			}
+
+			if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+			{
+				PlaySound(clickPressed);
+				currentSceen = GameSceen::INSTRUCTIONS;
+			}
+		}
+		else if ((mouseX > creditsPosContainer.x && mouseX < creditsPosContainer.x + mediumContainer.width) && (mouseY > creditsPosContainer.y && mouseY < creditsPosContainer.y + mediumContainer.height))
+		{
+			DrawTextEx(font, "Credits", creditsPos, fontSize, 3, ORANGE);
+
+			if (!isClicking)
+			{
+				isClicking = true;
+
+				PlaySound(click);
+			}
+
+			if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+			{
+				PlaySound(clickPressed);
+				currentSceen = GameSceen::CREDITS;
+			}
+		}
+		else if ((mouseX > exitPosContainer.x && mouseX < exitPosContainer.x + smallContainer.width) && (mouseY > exitPosContainer.y && mouseY < exitPosContainer.y + smallContainer.height))
+		{
+			DrawTextEx(font, "Exit", exitPos, fontSize, spacing, ORANGE);
+
+			if (!isClicking)
+			{
+				isClicking = true;
+
+				PlaySound(click);
+			}
+
+			if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+			{
+				PlaySound(clickPressed);
+				currentSceen = GameSceen::EXIT;
+			}
+		}
+		else
+		{
+			isClicking = false;
+		}
+	}
+	else
+	{
+		if (IsKeyPressed(KEY_ESCAPE))
+		{
+			currentSceen = GameSceen::MENU;
+		}
+		else if ((mouseX > backButtonPos.x && mouseX < backButtonPos.x + backButton.width) && (mouseY > backButtonPos.y && mouseY < backButtonPos.y + backButton.height))
+		{
+			DrawTextureV(backButtonAct, backButtonPos, WHITE);
+
+			if (!isClicking)
+			{
+				isClicking = true;
+
+				PlaySound(click);
+			}
+
+			if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+			{
+				PlaySound(clickPressed);
+				currentSceen = GameSceen::MENU;
+			}
+		}
+		else if (currentSceen == GameSceen::CREDITS && ((mouseX > gitHubPos.x && mouseX < gitHubPos.x + gitHubSize.x) && (mouseY > gitHubPos.y && mouseY < gitHubPos.y + gitHubSize.y)))
+		{		
+			DrawTextEx(font, "https://github.com/juandigilio", gitHubPos, fontSize * 0.2f, spacing / 8.0f, GREEN);
+
+			if (!isClicking)
+			{
+				isClicking = true;
+
+				PlaySound(click);
+			}
+
+			if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+			{
+				PlaySound(clickPressed);
+				OpenURL("https://github.com/juandigilio");
+			}	
+		}
+		else if (currentSceen == GameSceen::CREDITS && ((mouseX > itchioPos.x && mouseX < itchioPos.x + itchioSize.x) && (mouseY > itchioPos.y && mouseY < itchioPos.y + itchioSize.y)))
+		{
+			DrawTextEx(font, "https://juandigilio.itch.io", itchioPos, fontSize * 0.2f, spacing / 8.0f, GREEN);
+
+			if (!isClicking)
+			{
+				isClicking = true;
+
+				PlaySound(click);
+			}
+
+			if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+			{
+				PlaySound(clickPressed);
+				OpenURL("https://juandigilio.itch.io");
+			}
+		}
+		else
+		{
+			isClicking = false;
+		}
+	}
+
+}
+
+static void DrawMain()
+{
+	DrawTexture(background, 0, 0, WHITE);
+	DrawTextureEx(smallContainer, playPosContainer, 0, 1.0, WHITE);
+	DrawTextureEx(largeContainer, instructionsPosContainer, 0, 1.0, WHITE);
+	DrawTextureEx(mediumContainer, creditsPosContainer, 0, 1.0, WHITE);
+	DrawTextureEx(smallContainer, exitPosContainer, 0, 1.0, WHITE);
+
+	DrawTextEx(font, "Play", playPos, fontSize, spacing, RAYWHITE);
+	DrawTextEx(font, "Instructions", instructionsPos, fontSize, instrucrtionsSpacing, RAYWHITE);
+	DrawTextEx(font, "Credits", creditsPos, fontSize, 3, RAYWHITE);
+	DrawTextEx(font, "Exit", exitPos, fontSize, spacing, RAYWHITE);
+}
+
+void ShowMenu(GameSceen& currentSceen)
+{
+	DrawMain();
+
+	UpdateMusicStream(menuMusic);
+
+	GetInput(currentSceen);
+}
+
+static void DrawInstrucions()
+{
+	bigWindowPos.x = (screenWidth / 2.0f) - (bigWindow.width / 2.0f);
+	bigWindowPos.y = (screenHeight / 2.0f) - (bigWindow.height / 2.0f);
+
+	Vector2 textPos;
+
+	DrawTexture(background, 0, 0, WHITE);
+	DrawTextureV(bigWindow, bigWindowPos, WHITE);
+	DrawTextureV(backButton, backButtonPos, WHITE);
+
+	textPos.x = (screenWidth / 2) - MeasureTextEx(font, "INSTRUCTIONS", fontSize * 0.85f, spacing / 2.0f).x / 2.0f;
+	textPos.y = (screenHeight / 6) - fontSize + 10;
+	DrawTextEx(font, "INSTRUCTIONS", textPos, fontSize * 0.85f, spacing / 2.0f, RAYWHITE);
+
+	textPos.x = (screenWidth / 2) - MeasureTextEx(font, "Press left click once to shoot and get pressed", fontSize / 4.0f, spacing / 4.0f).x / 2.0f;
+	textPos.y = (screenHeight / 5) + (fontSize) - 20;
+	DrawTextEx(font, "Press once left click to shoot and get pressed", textPos, fontSize / 4.0f, spacing / 4.0f, RAYWHITE);
+
+	textPos.x = (screenWidth / 2) - MeasureTextEx(font, "right click to acelerate, ship will allways follow", fontSize / 4.0f, spacing / 4.0f).x / 2.0f;
+	textPos.y += 40;
+	DrawTextEx(font, "right click to acelerate, ship will allways follow", textPos, fontSize / 4.0f, spacing / 4.0f, RAYWHITE);
+
+	textPos.x = (screenWidth / 2) - MeasureTextEx(font, "mouse arrow. Destroy as many asteroids as possible", fontSize / 4.0f, spacing / 4.0f).x / 2.0f;
+	textPos.y += 40;
+	DrawTextEx(font, "mouse arrow. Destroy as many asteroids as possible", textPos, fontSize / 4.0f, spacing / 4.0f, RAYWHITE);
+
+	textPos.x = (screenWidth / 2) - MeasureTextEx(font, "and set the new record! Game will end when you", fontSize / 4.0f, spacing / 4.0f).x / 2.0f;
+	textPos.y += 40;
+	DrawTextEx(font, "and set the new record! Game will end when you", textPos, fontSize / 4.0f, spacing / 4.0f, RAYWHITE);
+
+	textPos.x = (screenWidth / 2) - MeasureTextEx(font, "loose all your lives, but there is not a win", fontSize / 4.0f, spacing / 4.0f).x / 2.0f;
+	textPos.y += 40;
+	DrawTextEx(font, "loose all your lives, but there is not a win", textPos, fontSize / 4.0f, spacing / 4.0f, RAYWHITE);
+
+	textPos.x = (screenWidth / 2) - MeasureTextEx(font, "condition, it's just a highest score comp.", fontSize / 4.0f, spacing / 4.0f).x / 2.0f;
+	textPos.y += 40;
+	DrawTextEx(font, "condition, it's just a highest score comp.", textPos, fontSize / 4.0f, spacing / 4.0f, RAYWHITE);
+
+	textPos.x = (screenWidth / 2) - MeasureTextEx(font, "(Press ESC to pause)", fontSize / 3.0f, spacing / 3.0f).x / 2.0f;
+	textPos.y += 160;
+	DrawTextEx(font, "(Press ESC to pause)", textPos, fontSize / 3.0f, spacing / 3.0f, RAYWHITE);
+}
+
+void ShowInstructions(GameSceen& currentSceen)
+{
+	DrawInstrucions();
+
+	UpdateMusicStream(menuMusic);
+
+	GetInput(currentSceen);
+}
+
+static void DrawCredits()
+{
+	Vector2 textPos;
+
+	smallWindowPos.x = (screenWidth / 2.0f) - (smallWindow.width / 2.0f);
+	smallWindowPos.y = (screenHeight / 2.0f) - (smallWindow.height / 2.0f) + 10.0f;
+
+	DrawTexture(background, 0, 0, WHITE);
+	DrawTextureV(smallWindow, smallWindowPos, WHITE);
+	DrawTextureV(backButton, backButtonPos, WHITE);
+
+	textPos.x = (screenWidth / 2) - MeasureTextEx(font, "Created by Juan Digilio", fontSize * 0.6f, spacing / 4.0f).x / 2.0f;
+	textPos.y = smallWindowPos.y - 130;
+	DrawTextEx(font, "Created by Juan Digilio", textPos, fontSize * 0.6f, spacing / 4.0f, RAYWHITE);
+
+	textPos.x = (screenWidth / 2) - MeasureTextEx(font, "Assets author:	MattWalkden", fontSize * 0.3f, spacing / 8.0f).x / 2.0f;
+	textPos.y += 55;
+	DrawTextEx(font, "Assets author: MattWalkden", textPos, fontSize * 0.3f, spacing / 8.0f, RAYWHITE);
+
+	textPos.x = (screenWidth / 2) - MeasureTextEx(font, "Downloaded from craftpix.net", fontSize * 0.3f, spacing / 8.0f).x / 2.0f;
+	textPos.y += 20;
+	DrawTextEx(font, "Downloaded from craftpix.net", textPos, fontSize * 0.3f, spacing / 8.0f, RAYWHITE);
+	
+	textPos.x = (screenWidth / 2) - MeasureTextEx(font, "This is remake of the classic", fontSize * 0.2f, spacing / 8.0f).x / 2.0f;
+	textPos.y += 90;
+	DrawTextEx(font, "This is remake of the classic", textPos, fontSize * 0.2f, spacing / 8.0f, RAYWHITE);
+
+	textPos.x = (screenWidth / 2) - MeasureTextEx(font, "Asteroids game made in raylib for my", fontSize * 0.2f, spacing / 8.0f).x / 2.0f;
+	textPos.y += 20;
+	DrawTextEx(font, "Asteroids game made in raylib for my", textPos, fontSize * 0.2f, spacing / 8.0f, RAYWHITE);
+
+	textPos.x = (screenWidth / 2) - MeasureTextEx(font, "coursing at Image-Campus in my first", fontSize * 0.2f, spacing / 8.0f).x / 2.0f;
+	textPos.y += 20;
+	DrawTextEx(font, "coursing at Image-Campus in my first", textPos, fontSize * 0.2f, spacing / 8.0f, RAYWHITE);
+
+	textPos.x = (screenWidth / 2) - MeasureTextEx(font, "year of video games development.", fontSize * 0.2f, spacing / 8.0f).x / 2.0f;
+	textPos.y += 20;
+	DrawTextEx(font, "year of video games development.", textPos, fontSize * 0.2f, spacing / 8.0f, RAYWHITE);
+
+	textPos.x = (screenWidth / 2) - MeasureTextEx(font, "The code is open source and you", fontSize * 0.2f, spacing / 8.0f).x / 2.0f;
+	textPos.y += 40;
+	DrawTextEx(font, "The code is open source and you", textPos, fontSize * 0.2f, spacing / 8.0f, RAYWHITE);
+
+	textPos.x = (screenWidth / 2) - MeasureTextEx(font, "can find it in my GitHub", fontSize * 0.2f, spacing / 8.0f).x / 2.0f;
+	textPos.y += 20;
+	DrawTextEx(font, "can find it in my GitHub", textPos, fontSize * 0.2f, spacing / 8.0f, RAYWHITE);
+
+	gitHubSize = MeasureTextEx(font, "https://github.com/juandigilio", fontSize * 0.2f, spacing / 8.0f);
+	itchioSize = MeasureTextEx(font, "https://juandigilio.itch.io/", fontSize * 0.2f, spacing / 8.0f);
+
+	gitHubPos.x = (screenWidth / 2) - gitHubSize.x / 2.0f;
+	gitHubPos.y = textPos.y + 30;
+	DrawTextEx(font, "https://github.com/juandigilio", gitHubPos, fontSize * 0.2f, spacing / 8.0f, RAYWHITE);
+
+	itchioPos.x = (screenWidth / 2) - itchioSize.x / 2.0f;
+	itchioPos.y = gitHubPos.y + 20;
+	DrawTextEx(font, "https://juandigilio.itch.io", itchioPos, fontSize * 0.2f, spacing / 8.0f, RAYWHITE);
+}
+
+void ShowCredits(GameSceen& currentSceen)
+{
+	DrawCredits();
+
+	UpdateMusicStream(menuMusic);
+
+	GetInput(currentSceen);
+}
+
+static void GetPausedInput(GameSceen& currentSceen)
+{
+	int mouseX = GetMouseX();
+	int mouseY = GetMouseY();
+
+	if ((mouseX > backButtonPos.x && mouseX < backButtonPos.x + backButton.width) && (mouseY > backButtonPos.y && mouseY < backButtonPos.y + backButton.height))
+	{
+		DrawTextureV(backButtonAct, backButtonPos, WHITE);
+
+		if (!isClicking)
+		{
+			isClicking = true;
+
+			PlaySound(click);
+		}
+
+		if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+		{
+			PlaySound(clickPressed);
+			currentSceen = GameSceen::GAME;
+		}
+	}
+	else if ((mouseX > menuButtonPos.x && mouseX < menuButtonPos.x + menuButton.width) && (mouseY > menuButtonPos.y && mouseY < menuButtonPos.y + menuButton.height))
+	{
+		DrawTextureV(menuButtonAct, menuButtonPos, WHITE);
+
+		if (!isClicking)
+		{
+			isClicking = true;
+
+			PlaySound(click);
+		}
+
+		if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+		{
+			PlaySound(clickPressed);
+			currentSceen = GameSceen::MENU;
+			loading = true;
+			StopMusicStream(gameLoopMusic);
+			PlayMusicStream(menuMusic);
+		}
+	}
+	else if ((mouseX > exitButtonPos.x && mouseX < exitButtonPos.x + exitButton.width) && (mouseY > exitButtonPos.y && mouseY < exitButtonPos.y + exitButton.height))
+	{
+		DrawTextureV(exitButtonAct, exitButtonPos, WHITE);
+
+		if (!isClicking)
+		{
+			isClicking = true;
+
+			PlaySound(click);
+		}
+
+		if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+		{
+			PlaySound(clickPressed);
+			currentSceen = GameSceen::EXIT;
+		}
+	}
+	else
+	{
+		isClicking = false;
+	}
+
+}
+
+void PauseGame(Player player, Wall* walls, ParallaxLayer layers[], GameSceen& currentSceen)
+{
+	DrawGame(player, walls, layers);
+
+	smallWindowPos.x = (screenWidth / 2.0f) - (smallWindow.width / 2.0f);
+	smallWindowPos.y = (screenHeight / 2.0f) - (smallWindow.height / 2.0f);
+
+	DrawTextureV(smallWindow, smallWindowPos, WHITE);
+	DrawTextureV(backButton, backButtonPos, WHITE);
+	DrawTextureV(menuButton, menuButtonPos, WHITE);
+	DrawTextureV(exitButton, exitButtonPos, WHITE);
+
+	Vector2 textPos;
+
+	textPos.x = (screenWidth / 2) - MeasureTextEx(font, "PAUSED GAME", fontSize * 0.45f, spacing).x / 2.0f;
+	textPos.y = smallWindowPos.y + 45.0f;
+	DrawTextEx(font, "PAUSED GAME", textPos, fontSize * 0.45f, spacing, RAYWHITE);
+
+	textPos.x = (screenWidth / 2) - MeasureTextEx(font, "Press ESC to continue", fontSize * 0.35f, spacing / 8.0f).x / 2.0f;
+	textPos.y += 90;
+	DrawTextEx(font, "Press ESC to continue", textPos, fontSize * 0.35f, spacing / 8.0f, RAYWHITE);
+
+	GetPausedInput(currentSceen);
+}
+
+static void DrawResults(Player player)
+{
+	Vector2 textPos;
+
+	smallWindowPos.x = (screenWidth / 2.0f) - (smallWindow.width / 2.0f);
+	smallWindowPos.y = (screenHeight / 2.0f) - (smallWindow.height / 2.0f);
+
+	DrawTexture(background, 0, 0, WHITE);
+	DrawTextureV(smallWindow, smallWindowPos, WHITE);
+	DrawTextureV(backButton, backButtonPos, WHITE);
+
+	textPos.x = (screenWidth / 2) - MeasureTextEx(font, "RESULTS", fontSize * 0.6f, spacing / 4.0f).x / 2.0f;
+	textPos.y = smallWindowPos.y + 30;
+	DrawTextEx(font, "RESULTS", textPos, fontSize * 0.6f, spacing / 4.0f, RAYWHITE);
+
+	textPos.x = (screenWidth / 2) - MeasureTextEx(font, "Your score:     ", fontSize * 0.4f, spacing / 8.0f).x / 2.0f;
+	textPos.y += 75;
+	DrawTextEx(font, "Your score: ", textPos, fontSize * 0.4f, spacing / 8.0f, RAYWHITE);
+
+	textPos.x += MeasureTextEx(font, "Your score: ", fontSize * 0.4f, spacing / 8.0f).x;
+	DrawTextEx(font, TextFormat("%01i", player.totalPoints), textPos, fontSize * 0.4f, spacing / 8.0f, RAYWHITE);
+
+	textPos.x = (screenWidth / 2) - MeasureTextEx(font, "High score:     ", fontSize * 0.4f, spacing / 8.0f).x / 2.0f;
+	textPos.y += 40;
+	DrawTextEx(font, "High score: ", textPos, fontSize * 0.4f, spacing / 8.0f, RAYWHITE);
+
+	textPos.x += MeasureTextEx(font, "High score: ", fontSize * 0.4f, spacing / 8.0f).x;
+	DrawTextEx(font, TextFormat("%01i", highScore), textPos, fontSize * 0.4f, spacing / 8.0f, RAYWHITE);
+}
+
+void ShowResults(Player& player, GameSceen& currentSceen)
+{
+	DrawResults(player);
+
+	GetInput(currentSceen);
+}
 

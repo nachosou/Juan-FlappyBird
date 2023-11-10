@@ -163,7 +163,7 @@ static void Update(Player& player, Wall* walls, ParallaxLayer layers[])
 	MoveLayers(layers);
 }
 
-static void Draw(Player& player, Wall* walls, ParallaxLayer layers[])
+void DrawGame(Player& player, Wall* walls, ParallaxLayer layers[])
 {
 	DrawLayers(layers);
 
@@ -178,7 +178,7 @@ static void Loop(Player& player, Wall* walls, ParallaxLayer layers[], GameSceen&
 
 	Update(player, walls, layers);
 
-	Draw(player, walls, layers);
+	DrawGame(player, walls, layers);
 }
 
 void PlayGame(Player& player, Wall* walls, ParallaxLayer layers[], GameSceen& currentSceen)

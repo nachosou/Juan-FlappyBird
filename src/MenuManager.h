@@ -2,6 +2,11 @@
 
 #include "raylib.h"
 
+#include "GameData.h"
+#include "ParallaxLayer.h"
+#include "Player.h"
+#include "Wall.h"
+
 namespace Assets
 {
 	extern Texture2D background;
@@ -41,4 +46,11 @@ namespace Assets
 	extern bool isClicking;
 }
 
+
 void InitMenu();
+void ShowMenu(GameSceen& currentSceen);
+void ShowInstructions(GameSceen& currentSceen);
+void ShowCredits(GameSceen& currentSceen);
+void PauseGame(Player player, Wall* walls, ParallaxLayer layers[], GameSceen& currentSceen);
+void ShowResults(Player& player, GameSceen& currentSceen);
+

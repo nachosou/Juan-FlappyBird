@@ -15,7 +15,7 @@ using namespace Parallax;
 
 void RunGame()
 {
-	GameSceen currentSceen = GameSceen::GAME;
+	GameSceen currentSceen = GameSceen::MENU;
 	ParallaxLayer* layers = new ParallaxLayer[layersQnty];
 
 	Player player;
@@ -42,7 +42,7 @@ void RunGame()
 		{
 		case GameSceen::MENU:
 		{
-			//ShowMenu(currentSceen);
+			ShowMenu(currentSceen);
 			break;
 		}
 		case GameSceen::GAME:
@@ -52,22 +52,22 @@ void RunGame()
 		}
 		case GameSceen::RESULTS:
 		{
-			//ShowResults(player, currentSceen);
+			ShowResults(player, currentSceen);
 			break;
 		}
 		case GameSceen::PAUSE:
 		{
-			//PauseGame(player, asteroids, halfAsteroids, quarterAsteroids, currentSceen);
+			PauseGame(player, walls, layers, currentSceen);
 			break;
 		}
 		case GameSceen::INSTRUCTIONS:
 		{
-			//ShowInstructions(currentSceen);
+			ShowInstructions(currentSceen);
 			break;
 		}
 		case GameSceen::CREDITS:
 		{
-			//ShowCredits(currentSceen);
+			ShowCredits(currentSceen);
 			break;
 		}
 		case GameSceen::EXIT:

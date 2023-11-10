@@ -19,4 +19,7 @@ namespace Globals
 	extern float fontSize{};
 	extern float spacing = 8.0f;
 	extern float instrucrtionsSpacing = 2.0f;
+
+	extern int highScore = 0;
+	extern bool loading = false;
 }

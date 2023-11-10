@@ -4,8 +4,8 @@
 
 struct Wall
 {
-	Vector2 position;
-	Vector2 speed;
+	Vector2 position{};
+	Vector2 speed{};
 	Texture2D texture{};
 	Rectangle source{};
 	bool isAlive = false;

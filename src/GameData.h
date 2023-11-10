@@ -31,4 +31,7 @@ namespace Globals
 	extern float fontSize;
 	extern float spacing;
 	extern float instrucrtionsSpacing;
+
+	extern int highScore;
+	extern bool loading;
 }

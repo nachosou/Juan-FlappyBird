@@ -54,7 +54,7 @@ void GetPlayerInput(Player& player, GameSceen& currentSceen)
     }
     else if (IsMouseButtonDown(MOUSE_LEFT_BUTTON))
     {
-        player.speed.y = -player.maxSpeed;
+        player.speed.y = player.jumpForce;
     }
     else if (IsKeyPressed(KEY_SPACE))
     {
@@ -72,7 +72,7 @@ void GetPlayerInput(Player& player, GameSceen& currentSceen)
 
     if (IsKeyDown(KEY_ESCAPE))
     {
-        currentSceen = GameSceen::EXIT;
+        currentSceen = GameSceen::PAUSE;
     }
 }
 
