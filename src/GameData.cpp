@@ -7,6 +7,8 @@ namespace Globals
 	extern const int screenHeight = 768;
 	extern Vector2 screenCenter = { screenWidth / 2, screenHeight / 2};
 
+	extern float version = 0.1f;
+
 	extern int totalWalls = 6;
 	extern double lastWall{};
 

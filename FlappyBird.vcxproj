@@ -18,6 +18,25 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\GameData.cpp" />
+    <ClCompile Include="src\GamePlay.cpp" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\MenuManager.cpp" />
+    <ClCompile Include="src\ParallaxLayer.cpp" />
+    <ClCompile Include="src\Player.cpp" />
+    <ClCompile Include="src\SceenManager.cpp" />
+    <ClCompile Include="src\Wall.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\GameData.h" />
+    <ClInclude Include="src\GamePlay.h" />
+    <ClInclude Include="src\MenuManager.h" />
+    <ClInclude Include="src\ParallaxLayer.h" />
+    <ClInclude Include="src\Player.h" />
+    <ClInclude Include="src\SceenManager.h" />
+    <ClInclude Include="src\Wall.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -93,6 +112,9 @@
       <AdditionalLibraryDirectories>$(SolutionDir)lib\Raylib\lib</AdditionalLibraryDirectories>
       <AdditionalDependencies>winmm.lib;raylib.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>"$(ProjectDir)utils\assetsCopy.bat" "$(ProjectDir)Assets" "$(OutDir)Assets"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -115,7 +137,7 @@
       <EntryPointSymbol>mainCRTStartup</EntryPointSymbol>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /y /i /s "$(ProjectDir)Assets" "$(OutDir)Assets"</Command>
+      <Command>"$(ProjectDir)utils\assetsCopy.bat" "$(ProjectDir)Assets" "$(OutDir)Assets"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -146,25 +168,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="GameData.cpp" />
-    <ClCompile Include="GamePlay.cpp" />
-    <ClCompile Include="ParallaxLayer.cpp" />
-    <ClCompile Include="Player.cpp" />
-    <ClCompile Include="SceenManager.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="MenuManager.cpp" />
-    <ClCompile Include="Wall.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="GameData.h" />
-    <ClInclude Include="GamePlay.h" />
-    <ClInclude Include="ParallaxLayer.h" />
-    <ClInclude Include="SceenManager.h" />
-    <ClInclude Include="MenuManager.h" />
-    <ClInclude Include="Player.h" />
-    <ClInclude Include="Wall.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

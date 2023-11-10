@@ -15,51 +15,51 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="src\GameData.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MenuManager.cpp">
+    <ClCompile Include="src\GamePlay.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SceenManager.cpp">
+    <ClCompile Include="src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GameData.cpp">
+    <ClCompile Include="src\MenuManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GamePlay.cpp">
+    <ClCompile Include="src\ParallaxLayer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cpp">
+    <ClCompile Include="src\Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Wall.cpp">
+    <ClCompile Include="src\SceenManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ParallaxLayer.cpp">
+    <ClCompile Include="src\Wall.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Player.h">
+    <ClInclude Include="src\GameData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Wall.h">
+    <ClInclude Include="src\GamePlay.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MenuManager.h">
+    <ClInclude Include="src\MenuManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SceenManager.h">
+    <ClInclude Include="src\ParallaxLayer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GameData.h">
+    <ClInclude Include="src\Player.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GamePlay.h">
+    <ClInclude Include="src\SceenManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ParallaxLayer.h">
+    <ClInclude Include="src\Wall.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

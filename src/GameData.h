@@ -19,6 +19,8 @@ namespace Globals
 	extern const int screenHeight;
 	extern Vector2 screenCenter;
 
+	extern float version;
+
 	extern int totalWalls;
 	extern double lastWall;
 
