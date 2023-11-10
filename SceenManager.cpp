@@ -3,17 +3,20 @@
 #include <iostream>
 
 #include "GameData.h"
+#include "ParallaxLayer.h"
 #include "Player.h"
 #include "Wall.h"
 #include "MenuManager.h"
 #include "GamePlay.h"
 
 using namespace Globals;
+using namespace Parallax;
 
 
 void RunGame()
 {
 	GameSceen currentSceen = GameSceen::GAME;
+	ParallaxLayer* layers = new ParallaxLayer[layersQnty];
 
 	Player player;
 	Wall* walls = new Wall[totalWalls];
@@ -44,7 +47,7 @@ void RunGame()
 		}
 		case GameSceen::GAME:
 		{
-			PlayGame(player, walls, currentSceen);
+			PlayGame(player, walls, layers, currentSceen);
 			break;
 		}
 		case GameSceen::RESULTS:
@@ -72,6 +75,7 @@ void RunGame()
 			CloseWindow();
 
 			delete[] walls;
+			delete[] layers;
 
 			break;
 		}

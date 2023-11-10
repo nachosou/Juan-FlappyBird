@@ -8,6 +8,7 @@
 #include "GameData.h"
 
 
+
 namespace Assets
 {
 	extern Sound crash{};
@@ -24,7 +25,7 @@ using namespace Globals;
 
 
 
-static void LoadGame(Player& player, Wall* walls)
+static void LoadGame(Player& player, Wall* walls, ParallaxLayer layers[])
 {
 	gamePlayBacground = LoadTexture("Assets/Images/background.png");
 
@@ -38,6 +39,7 @@ static void LoadGame(Player& player, Wall* walls)
 
 	LoadPlayer(player);
 	LoadWalls(walls);
+	LoadParallaxLayers(layers);
 }
 
 static bool PlayerCollidesWall(Player& player, Wall* walls)
@@ -150,41 +152,43 @@ static void GetInput(Player& player, GameSceen& currentSceen)
 	GetPlayerInput(player, currentSceen);
 }
 
-static void Update(Player& player, Wall* walls)
+static void Update(Player& player, Wall* walls, ParallaxLayer layers[])
 {
 	UpdatePlayer(player);
 
 	UpdateWalls(walls);
 
 	CheckCollisions(player, walls);
+
+	MoveLayers(layers);
 }
 
-static void Draw(Player& player, Wall* walls)
+static void Draw(Player& player, Wall* walls, ParallaxLayer layers[])
 {
-	DrawTextureEx(gamePlayBacground, { 0,0 }, 0, 1.0, WHITE);
+	DrawLayers(layers);
 
 	DrawPlayer(player);
 
 	DrawWalls(walls);
 }
 
-static void Loop(Player& player, Wall* walls, GameSceen& currentSceen)
+static void Loop(Player& player, Wall* walls, ParallaxLayer layers[], GameSceen& currentSceen)
 {
 	GetInput(player, currentSceen);
 
-	Update(player, walls);
+	Update(player, walls, layers);
 
-	Draw(player, walls);
+	Draw(player, walls, layers);
 }
 
-void PlayGame(Player& player, Wall* walls, GameSceen& currentSceen)
+void PlayGame(Player& player, Wall* walls, ParallaxLayer layers[], GameSceen& currentSceen)
 {
 	if (player.isLoading)
 	{
-		LoadGame(player, walls);
+		LoadGame(player, walls, layers);
 
 		player.isLoading = false;
 	}
 
-	Loop(player, walls, currentSceen);
+	Loop(player, walls, layers, currentSceen);
 }
