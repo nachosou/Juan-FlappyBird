@@ -148,6 +148,7 @@
   <ItemGroup>
     <ClCompile Include="GameData.cpp" />
     <ClCompile Include="GamePlay.cpp" />
+    <ClCompile Include="ParallaxLayer.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="SceenManager.cpp" />
     <ClCompile Include="main.cpp" />
@@ -157,6 +158,7 @@
   <ItemGroup>
     <ClInclude Include="GameData.h" />
     <ClInclude Include="GamePlay.h" />
+    <ClInclude Include="ParallaxLayer.h" />
     <ClInclude Include="SceenManager.h" />
     <ClInclude Include="MenuManager.h" />
     <ClInclude Include="Player.h" />
