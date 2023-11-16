@@ -42,6 +42,7 @@ namespace Assets
 	extern Vector2 backButtonPos{};
 	extern Vector2 menuButtonPos{};
 	extern Vector2 exitButtonPos{};
+	extern Vector2 versionPos{};
 	
 	extern Vector2 gitHubPos{};
 	extern Vector2 gitHubSize{};
@@ -102,6 +103,9 @@ void InitMenu()
 	exitPosContainer.y = (screenHeight / 5.0f) * 4.0f - (smallContainer.height / 2.0f);
 	exitPos.x = (screenWidth / 2.0f) - MeasureTextEx(font, "Exit", fontSize, spacing).x / 2.0f + 8.0f;
 	exitPos.y = (screenHeight / 5.0f) * 4.0f -(fontSize / 2.0f);
+
+	versionPos.y = (screenHeight - 35.0f);
+	versionPos.x = 35.0f;
 
 	backButtonPos.x = 15.0f;
 	backButtonPos.y = 15.0f;
@@ -272,6 +276,7 @@ static void DrawMain()
 	DrawTextEx(font, "Instructions", instructionsPos, fontSize, instrucrtionsSpacing, RAYWHITE);
 	DrawTextEx(font, "Credits", creditsPos, fontSize, 3, RAYWHITE);
 	DrawTextEx(font, "Exit", exitPos, fontSize, spacing, RAYWHITE);
+	DrawTextEx(font, "Version 0.2", versionPos, fontSize / 4.0f, spacing, RAYWHITE);
 }
 
 void ShowMenu(GameSceen& currentSceen)

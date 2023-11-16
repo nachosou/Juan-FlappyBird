@@ -36,9 +36,9 @@ static void MovePlayer(Player& player)
     {
         player.position.x = 0.0f;
     }
-    else if (player.position.y + (player.texture.height) > screenHeight)
+    else if (player.position.y + (player.texture.height / 2.0f) > screenHeight)
     {
-        player.position.y = static_cast<float>(screenHeight - (player.texture.height));
+        player.availableLives--;
     }
     else if (player.position.y < 0.0f)
     {

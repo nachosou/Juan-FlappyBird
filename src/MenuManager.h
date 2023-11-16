@@ -34,6 +34,7 @@ namespace Assets
 	extern Vector2 instructionsPos;
 	extern Vector2 creditsPos;
 	extern Vector2 exitPos;
+	extern Vector2 versionPos;
 
 	extern Vector2 bigWindowPos;
 	extern Vector2 smallWindowPos;
