@@ -4,6 +4,6 @@
 #include "Wall.h"
 #include "ParallaxLayer.h"
 
-void PlayGame(Player& player, Wall* walls, ParallaxLayer layers[], GameSceen& currentSceen);
+void PlayGame(Player& player, Wall& topWall, Wall& bottomWall, ParallaxLayer layers[], GameSceen& currentSceen);
 
-void DrawGame(Player& player, Wall* walls, ParallaxLayer layers[]);
+void DrawGame(Player& player, Wall& topWall, Wall& bottomWall, ParallaxLayer layers[]);

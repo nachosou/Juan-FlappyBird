@@ -19,7 +19,8 @@ void RunGame()
 	ParallaxLayer* layers = new ParallaxLayer[layersQnty];
 
 	Player player;
-	Wall* walls = new Wall[totalWalls];
+	Wall topWall;
+	Wall bottomWall;
 
 	srand(static_cast<unsigned>(time(NULL)));
 
@@ -45,7 +46,7 @@ void RunGame()
 		}
 		case GameSceen::GAME:
 		{
-			PlayGame(player, walls, layers, currentSceen);
+			PlayGame(player, topWall, bottomWall, layers, currentSceen);
 			break;
 		}
 		case GameSceen::RESULTS:
@@ -55,7 +56,7 @@ void RunGame()
 		}
 		case GameSceen::PAUSE:
 		{
-			PauseGame(player, walls, layers, currentSceen);
+			PauseGame(player, topWall, bottomWall, layers, currentSceen);
 			break;
 		}
 		case GameSceen::INSTRUCTIONS:
@@ -71,9 +72,6 @@ void RunGame()
 		case GameSceen::EXIT:
 		{
 			CloseWindow();
-
-			delete[] walls;
-			delete[] layers;
 
 			break;
 		}

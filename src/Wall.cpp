@@ -2,104 +2,55 @@
 
 #include "GameData.h"
 
-
 using namespace Globals;
 
-void LoadWalls(Wall& walls)
+void initWalls(Wall& topWall, Wall& bottomWall)
 {
-    for (int i = 0; i < totalWalls; i++)
-    {
-        walls[i].texture = LoadTexture("Assets/Images/wall.png");
-        walls[i].position.x = static_cast<float>(screenWidth);
-        walls[i].position.y = static_cast<float>(GetRandomValue(0, screenHeight - walls[i].texture.height));
-        walls[i].source = { 0, 0, static_cast<float>(walls[i].texture.width), static_cast<float>(walls[i].texture.height) };
-        walls[i].speed.x = 50.0f;
-    }
+	topWall.position.x = static_cast<float>(screenWidth);
+	topWall.position.y = 0;
+	topWall.speed = 600;
+	topWall.width = 40;
+	topWall.height = static_cast<int>(GetRandomValue(100, 500));
+	topWall.coolDown = 0;
+
+	bottomWall.position.x = static_cast<float>(screenWidth);
+	bottomWall.height = screenHeight - topWall.height - topWall.sepparation;
+	bottomWall.position.y = static_cast<float>(screenHeight - bottomWall.height);
+	bottomWall.speed = 600;
+	bottomWall.width = 40;
+	bottomWall.coolDown = 0;
 }
 
-static void MoveWalls(Wall& walls)
+static void MoveWalls(Wall& topWall, Wall& bottomWall)
 {
-    for (int i = 0; i < totalWalls; i++)
-    {
-        if (walls[i].isAlive)
-        {
-            walls[i].position.x -= walls[i].speed.x * GetFrameTime();
+	topWall.coolDown += GetFrameTime();
 
-            if (walls[i].position.x + (walls[i].texture.width / 2.0f) < 0.0f)
-            {
-                walls[i].position.x = static_cast<float>(screenWidth);
-            }
-            else if (walls[i].position.y + (walls[i].texture.height / 2.0f) > screenHeight)
-            {
-                walls[i].position.y = screenHeight - (walls[i].texture.height / 2.0f);
-            }
-            else if (walls[i].position.y - (walls[i].texture.height / 2.0f) < 0.0f)
-            {
-                walls[i].position.y = (walls[i].texture.height / 2.0f);
-            }
-        }
-    }  
+	if (topWall.coolDown > 1)
+	{
+		topWall.position.x -= topWall.speed * GetFrameTime();
+		bottomWall.position.x -= bottomWall.speed * GetFrameTime();
+	}
+
+	if (topWall.position.x < 0 - topWall.width)
+	{
+		topWall.position.x = static_cast<float>(screenWidth);
+		topWall.coolDown = 0;
+		topWall.height = static_cast<int>(GetRandomValue(100, 500));
+		bottomWall.position.x = static_cast<float>(screenWidth);
+		bottomWall.height = static_cast<int>(screenHeight - topWall.height - bottomWall.sepparation);
+		bottomWall.position.y = static_cast<float>(screenHeight - bottomWall.height);
+	}
 }
 
-static void GenerateWalls(Wall& walls)
+void UpdateWalls(Wall& topWall, Wall& bottomWall)
 {
-    double elapsedTime = GetTime();
+	initWalls(topWall, bottomWall);
 
-    if (elapsedTime > lastWall + 4.0f)
-    {
-        for (int i = 0; i < totalWalls; i++)
-        {
-            if (!walls[i].isAlive)
-            {
-                walls[i].isAlive = true;
-                lastWall = GetTime();
-
-                if (i == 0)
-                {
-                    if (walls[totalWalls - 1].GetCenter().y < screenHeight / 2.0f)
-                    {
-                        walls[i].position.y = static_cast<float>(GetRandomValue(static_cast<int>(walls[totalWalls - 1].GetCenter().y), static_cast<int>(walls[totalWalls - 1].position.y + walls[totalWalls - 1].texture.height)));
-                    }
-                    else
-                    {
-                        walls[i].position.y = static_cast<float>(GetRandomValue(static_cast<int>(walls[totalWalls - 1].GetCenter().y), static_cast<int>(walls[totalWalls - 1].position.y - walls[totalWalls - 1].texture.height)));
-                    }
-                }
-                else
-                {
-                    if (walls[i - 1].GetCenter().y < screenHeight / 2.0f)
-                    {
-                        walls[i].position.y = static_cast<float>(GetRandomValue(static_cast<int>(walls[i - 1].GetCenter().y), static_cast<int>(walls[i - 1].position.y + walls[i - 1].texture.height)));
-                    }
-                    else
-                    {
-                        walls[i].position.y = static_cast<float>(GetRandomValue(static_cast<int>(walls[i - 1].GetCenter().y), static_cast<int>(walls[i - 1].position.y - walls[i - 1].texture.height)));
-                    }
-                }
-
-                break;
-            }
-        }
-    }
+	MoveWalls(topWall, bottomWall);
 }
 
-void UpdateWalls(Wall& walls)
+void DrawWalls(Wall topWall, Wall bottomWall)
 {
-    GenerateWalls(walls);
-    
-    MoveWalls(walls);
-}
-
-void DrawWalls(Wall walls)
-{
-    for (int i = 0; i < totalWalls; i++)
-    {
-        if (walls[i].isAlive)
-        {
-            Rectangle dest = { walls[i].GetCenter().x, walls[i].GetCenter().y, static_cast<float>(walls[i].texture.width), static_cast<float>(walls[i].texture.height) };
-            Vector2 origin = { static_cast<float>(walls[i].texture.width / 2), static_cast<float>(walls[i].texture.height / 2) };
-
-            DrawTexturePro(walls[i].texture, walls[i].source, dest, origin, 0.0f, RAYWHITE);
-        }
-    }
+	DrawRectangle(static_cast<int>(topWall.position.x), static_cast<int>(topWall.position.y), topWall.width, topWall.height, GREEN);
+	DrawRectangle(static_cast<int>(bottomWall.position.x), static_cast<int>(bottomWall.position.y), bottomWall.width, bottomWall.height, GREEN);
 }

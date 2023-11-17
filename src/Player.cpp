@@ -15,57 +15,31 @@ void LoadPlayer(Player& player)
     player.totalPoints = 0;
     player.thousandCounter = 0;
     player.availableLives = 3;
+    player.width = 60;
+    player.height = 60;
 
     player.thousand = LoadSound("Assets/Sounds/crash.wav");
 }
 
 static void MovePlayer(Player& player)
 {
-    player.position.x += player.speed.x * GetFrameTime();
+    if (IsKeyPressed(KEY_SPACE) && player.position.y > 0)
+    {
+        player.speed.y = player.jumpForce;
+        player.isJumping = true;
+    }
+
+    player.speed.y += player.gravity * GetFrameTime();
     player.position.y += player.speed.y * GetFrameTime();
 
-    if (player.position.x + (player.texture.width) > screenWidth)
+    if (player.isJumping && player.speed.y > 0)
     {
-        player.position.x = static_cast<float>(screenWidth - (player.texture.width));
-    }
-    else if (player.position.x < 0.0f)
-    {
-        player.position.x = 0.0f;
-    }
-    else if (player.position.y + (player.texture.height / 2.0f) > screenHeight)
-    {
-        player.availableLives--;
-    }
-    else if (player.position.y < 0.0f)
-    {
-        player.position.y = 0.0f;
+        player.isJumping = false;
     }
 }
 
-void GetPlayerInput(Player& player, GameSceen& currentSceen)
+void GetPlayerInput(GameSceen& currentSceen)
 {
-    if (IsMouseButtonPressed(MOUSE_RIGHT_BUTTON))
-    {
-        player.speed.y = player.maxSpeed;
-    }
-    else if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
-    {
-        player.speed.y = player.jumpForce;
-    }
-    else if (IsKeyPressed(KEY_SPACE))
-    {
-        player.speed.y = player.jumpForce;
-    }
-    else
-    {
-        player.speed.y += player.gravity;
-
-        if (player.speed.y > player.maxSpeed)
-        {
-            player.speed.y = player.maxSpeed;
-        }
-    }
-
     if (IsKeyDown(KEY_ESCAPE))
     {
         currentSceen = GameSceen::PAUSE;

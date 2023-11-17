@@ -52,6 +52,6 @@ void InitMenu();
 void ShowMenu(GameSceen& currentSceen);
 void ShowInstructions(GameSceen& currentSceen);
 void ShowCredits(GameSceen& currentSceen);
-void PauseGame(Player player, Wall* walls, ParallaxLayer layers[], GameSceen& currentSceen);
+void PauseGame(Player player, Wall& topWall, Wall& bottomWall, ParallaxLayer layers[], GameSceen& currentSceen);
 void ShowResults(Player& player, GameSceen& currentSceen);
 

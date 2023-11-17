@@ -480,9 +480,9 @@ static void GetPausedInput(GameSceen& currentSceen)
 	}
 }
 
-void PauseGame(Player player, Wall* walls, ParallaxLayer layers[], GameSceen& currentSceen)
+void PauseGame(Player player, Wall& topWall, Wall& bottomWall, ParallaxLayer layers[], GameSceen& currentSceen)
 {
-	DrawGame(player, walls, layers);
+	DrawGame(player, topWall, bottomWall, layers);
 
 	smallWindowPos.x = (screenWidth / 2.0f) - (smallWindow.width / 2.0f);
 	smallWindowPos.y = (screenHeight / 2.0f) - (smallWindow.height / 2.0f);

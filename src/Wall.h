@@ -4,18 +4,14 @@
 
 struct Wall
 {
-	Vector2 position{};
-	Vector2 speed{};
-	Texture2D texture{};
-	Rectangle source{};
-	bool isAlive = false;
-
-	Vector2 GetCenter()
-	{
-		return { position.x + (texture.width / 2), position.y + (texture.height / 2) };
-	}
+	Vector2 position = { 0, 0 };
+	int speed = 0;
+	int height = 0;
+	int width = 0;
+	float coolDown = 0;
+	int sepparation = 120;
 };
 
-void LoadWalls(Wall& walls);
-void UpdateWalls(Wall& walls);
-void DrawWalls(Wall& walls);
+void initWalls(Wall& topWall, Wall& bottomWall);
+void UpdateWalls(Wall& topWall, Wall& bottomWall);
+void DrawWalls(Wall topWall, Wall bottomWall);

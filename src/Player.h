@@ -8,7 +8,7 @@ struct Player
 	Vector2 position{};
 	Vector2 speed{};
 	float maxSpeed = 150.0f;
-	float gravity = 0.5f;
+	float gravity = 600.0f;
 	float jumpForce = -400.0f;
 	int availableLives{};
 	int totalPoints{};
@@ -17,6 +17,8 @@ struct Player
 	int frame = 0;
 	float lastFrame = 0;
 	bool isLoading = true;
+	int width;
+	int height;
 
 	int thousandCounter{};
 	Sound thousand{};
@@ -33,7 +35,7 @@ struct Player
 
 void LoadPlayer(Player& player);
 
-void GetPlayerInput(Player& player, GameSceen& currentSceen);
+void GetPlayerInput(GameSceen& currentSceen);
 
 void UpdatePlayer(Player& player);
 
