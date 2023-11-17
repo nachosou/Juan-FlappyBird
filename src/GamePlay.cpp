@@ -23,8 +23,6 @@ namespace Assets
 using namespace Assets;
 using namespace Globals;
 
-
-
 static void LoadGame(Player& player, Wall* walls, ParallaxLayer layers[])
 {
 	gamePlayBacground = LoadTexture("Assets/Images/background.png");

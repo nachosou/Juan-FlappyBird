@@ -31,8 +31,6 @@ void RunGame()
 
 	InitMenu();
 
-	//PlayMusicStream(menuMusic);
-
 	while (currentSceen != GameSceen::EXIT)
 	{
 		BeginDrawing();

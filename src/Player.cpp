@@ -5,20 +5,17 @@
 
 #include <iostream>
 
-
 using namespace Globals;
-
 
 void LoadPlayer(Player& player)
 {
     player.texture = LoadTexture("Assets/Images/ship.png");
-    player.position.x = screenCenter.x - player.texture.width / 2;
+    player.position.x = 100;
     player.position.y = screenCenter.y - player.texture.height / 2;
     player.totalPoints = 0;
     player.thousandCounter = 0;
     player.availableLives = 3;
 
-    //player.shoot = LoadSound("Assets/Sounds/shoot.wav");
     player.thousand = LoadSound("Assets/Sounds/crash.wav");
 }
 
@@ -47,11 +44,11 @@ static void MovePlayer(Player& player)
 
 void GetPlayerInput(Player& player, GameSceen& currentSceen)
 {
-    if (IsMouseButtonDown(MOUSE_RIGHT_BUTTON))
+    if (IsMouseButtonPressed(MOUSE_RIGHT_BUTTON))
     {
         player.speed.y = player.maxSpeed;
     }
-    else if (IsMouseButtonDown(MOUSE_LEFT_BUTTON))
+    else if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
     {
         player.speed.y = player.jumpForce;
     }
@@ -94,5 +91,4 @@ void DrawPlayer(Player& player)
     
     player.source = { 0, 0, static_cast<float>(player.texture.width), static_cast<float>(player.texture.height) };
     DrawTexturePro(player.texture, player.source, dest, origin, 0.0f, RAYWHITE);
-
 }

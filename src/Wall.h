@@ -16,6 +16,6 @@ struct Wall
 	}
 };
 
-void LoadWalls(Wall* walls);
-void UpdateWalls(Wall* walls);
-void DrawWalls(Wall* walls);
+void LoadWalls(Wall& walls);
+void UpdateWalls(Wall& walls);
+void DrawWalls(Wall& walls);

@@ -5,7 +5,7 @@
 
 using namespace Globals;
 
-void LoadWalls(Wall* walls)
+void LoadWalls(Wall& walls)
 {
     for (int i = 0; i < totalWalls; i++)
     {
@@ -17,7 +17,7 @@ void LoadWalls(Wall* walls)
     }
 }
 
-static void MoveWalls(Wall* walls)
+static void MoveWalls(Wall& walls)
 {
     for (int i = 0; i < totalWalls; i++)
     {
@@ -41,7 +41,7 @@ static void MoveWalls(Wall* walls)
     }  
 }
 
-static void GenerateWalls(Wall* walls)
+static void GenerateWalls(Wall& walls)
 {
     double elapsedTime = GetTime();
 
@@ -83,14 +83,14 @@ static void GenerateWalls(Wall* walls)
     }
 }
 
-void UpdateWalls(Wall* walls)
+void UpdateWalls(Wall& walls)
 {
     GenerateWalls(walls);
     
     MoveWalls(walls);
 }
 
-void DrawWalls(Wall* walls)
+void DrawWalls(Wall walls)
 {
     for (int i = 0; i < totalWalls; i++)
     {
