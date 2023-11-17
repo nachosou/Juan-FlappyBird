@@ -14,7 +14,6 @@ void LoadPlayer(Player& player)
     player.texture = LoadTexture("Assets/Images/ship.png");
     player.position.x = screenCenter.x - player.texture.width / 2;
     player.position.y = screenCenter.y - player.texture.height / 2;
-    player.source = { 0, 0, static_cast<float>(player.texture.width), static_cast<float>(player.texture.height) };
     player.totalPoints = 0;
     player.thousandCounter = 0;
     player.availableLives = 3;
@@ -92,6 +91,8 @@ void DrawPlayer(Player& player)
 {
     Rectangle dest = { player.GetCenter().x, player.GetCenter().y, static_cast<float>(player.texture.width), static_cast<float>(player.texture.height) };
     Vector2 origin = { static_cast<float>(player.texture.width / 2), static_cast<float>(player.texture.height / 2) };
-
+    
+    player.source = { 0, 0, static_cast<float>(player.texture.width), static_cast<float>(player.texture.height) };
     DrawTexturePro(player.texture, player.source, dest, origin, 0.0f, RAYWHITE);
+
 }

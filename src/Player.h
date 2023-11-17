@@ -13,12 +13,16 @@ struct Player
 	int availableLives{};
 	int totalPoints{};
 	bool isAlive{};
+	bool isJumping = false;
+	int frame = 0;
+	float lastFrame = 0;
 	bool isLoading = true;
 
 	int thousandCounter{};
 	Sound thousand{};
 
 	Texture2D texture{};
+	Texture2D jumpingTexture{};
 	Rectangle source{};
 
 	Vector2 GetCenter()

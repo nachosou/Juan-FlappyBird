@@ -473,6 +473,11 @@ static void GetPausedInput(GameSceen& currentSceen)
 		isClicking = false;
 	}
 
+	if (IsKeyPressed(MOUSE_BUTTON_LEFT))
+	{
+		PlaySound(clickPressed);
+		currentSceen = GameSceen::GAME;
+	}
 }
 
 void PauseGame(Player player, Wall* walls, ParallaxLayer layers[], GameSceen& currentSceen)

@@ -45,7 +45,7 @@ static void GenerateWalls(Wall* walls)
 {
     double elapsedTime = GetTime();
 
-    if (elapsedTime > lastWall + 3.0f)
+    if (elapsedTime > lastWall + 4.0f)
     {
         for (int i = 0; i < totalWalls; i++)
         {
