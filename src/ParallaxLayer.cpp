@@ -26,13 +26,13 @@ void LoadParallaxLayers(ParallaxLayer layers[])
 	layers[0].speed = 200.0f;
 	layers[1].speed = 300.0f;
 	layers[2].speed = 400.0f;
-	layers[3].speed = 800.0f;
+	/*layers[3].speed = 800.0f;*/
 	layers[4].speed = 800.0f;
 
 	layers[0].position = { 0, 0 };
 	layers[1].position = { 0, 0 };
 	layers[2].position = { 0, 0 };
-	layers[3].position = { 0, 0 };
+	/*layers[3].position = { 0, 0 };*/
 	layers[4].position = { 0, 0 };
 
 	layers[0].dest = { layers[0].GetCenter().x, layers[0].GetCenter().y, static_cast<float>(layers[0].texture.width), static_cast<float>(layers[0].texture.height) };
@@ -44,7 +44,7 @@ void LoadParallaxLayers(ParallaxLayer layers[])
 	layers[2].dest = { layers[2].GetCenter().x, layers[2].GetCenter().y, static_cast<float>(layers[2].texture.width), static_cast<float>(layers[2].texture.height) };
 	layers[2].origin = { static_cast<float>(layers[2].texture.width / 2), static_cast<float>(layers[2].texture.height / 2) };
 	layers[2].source = { 0, 0, static_cast<float>(layers[2].texture.width), static_cast<float>(layers[2].texture.height) };
-	layers[3].dest = { layers[3].GetCenter().x, layers[3].GetCenter().y, static_cast<float>(layers[3].texture.width), static_cast<float>(layers[3].texture.height) };
+	/*layers[3].dest = { layers[3].GetCenter().x, layers[3].GetCenter().y, static_cast<float>(layers[3].texture.width), static_cast<float>(layers[3].texture.height) };*/
 	//layers[3].origin = { static_cast<float>(layers[3].texture.width / 2), static_cast<float>(layers[3].texture.height / 2) };
 	//layers[3].source = { 0, 0, static_cast<float>(layers[3].texture.width), static_cast<float>(layers[3].texture.height) };
 	layers[4].dest = { layers[4].GetCenter().x, layers[4].GetCenter().y, static_cast<float>(layers[4].texture.width), static_cast<float>(layers[4].texture.height) };
