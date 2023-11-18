@@ -18,8 +18,8 @@ void LoadParallaxLayers(ParallaxLayer layers[])
 	layers[1].texture.height = screenHeight;
 	layers[2].texture = LoadTexture("Assets/Images/Parallax/layer3.png");
 	layers[2].texture.height = screenHeight;
-	layers[3].texture = LoadTexture("Assets/Images/Parallax/layer4.png");
-	layers[3].texture.height = screenHeight;
+	//layers[3].texture = LoadTexture("Assets/Images/Parallax/layer4.png");
+	//layers[3].texture.height = screenHeight;
 	layers[4].texture = LoadTexture("Assets/Images/Parallax/layer5.png");
 	layers[4].texture.height = screenHeight;
 
@@ -45,8 +45,8 @@ void LoadParallaxLayers(ParallaxLayer layers[])
 	layers[2].origin = { static_cast<float>(layers[2].texture.width / 2), static_cast<float>(layers[2].texture.height / 2) };
 	layers[2].source = { 0, 0, static_cast<float>(layers[2].texture.width), static_cast<float>(layers[2].texture.height) };
 	layers[3].dest = { layers[3].GetCenter().x, layers[3].GetCenter().y, static_cast<float>(layers[3].texture.width), static_cast<float>(layers[3].texture.height) };
-	layers[3].origin = { static_cast<float>(layers[3].texture.width / 2), static_cast<float>(layers[3].texture.height / 2) };
-	layers[3].source = { 0, 0, static_cast<float>(layers[3].texture.width), static_cast<float>(layers[3].texture.height) };
+	//layers[3].origin = { static_cast<float>(layers[3].texture.width / 2), static_cast<float>(layers[3].texture.height / 2) };
+	//layers[3].source = { 0, 0, static_cast<float>(layers[3].texture.width), static_cast<float>(layers[3].texture.height) };
 	layers[4].dest = { layers[4].GetCenter().x, layers[4].GetCenter().y, static_cast<float>(layers[4].texture.width), static_cast<float>(layers[4].texture.height) };
 	layers[4].origin = { static_cast<float>(layers[4].texture.width / 2), static_cast<float>(layers[4].texture.height / 2) };
 	layers[4].source = { 0, 0, static_cast<float>(layers[4].texture.width), static_cast<float>(layers[4].texture.height) };

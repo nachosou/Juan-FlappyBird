@@ -10,6 +10,7 @@ using namespace Globals;
 void LoadPlayer(Player& player)
 {
     player.texture = LoadTexture("Assets/Images/ship.png");
+    player.jumpingTexture = LoadTexture("Assets/Images/jumpingShip.png");
     player.position.x = 100;
     player.position.y = screenCenter.y - player.texture.height / 2;
     player.totalPoints = 0;
@@ -35,6 +36,18 @@ static void MovePlayer(Player& player)
     if (player.isJumping && player.speed.y > 0)
     {
         player.isJumping = false;
+    }
+}
+
+static Texture2D changeTexture(Player& player)
+{
+    if (player.isJumping == true)
+    {
+        return player.jumpingTexture;
+    }
+    else
+    {
+        return player.texture;
     }
 }
 
@@ -64,5 +77,5 @@ void DrawPlayer(Player& player)
     Vector2 origin = { static_cast<float>(player.texture.width / 2), static_cast<float>(player.texture.height / 2) };
     
     player.source = { 0, 0, static_cast<float>(player.texture.width), static_cast<float>(player.texture.height) };
-    DrawTexturePro(player.texture, player.source, dest, origin, 0.0f, RAYWHITE);
+    DrawTexturePro(changeTexture(player), player.source, dest, origin, 0.0f, RAYWHITE);
 }

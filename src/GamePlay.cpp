@@ -43,30 +43,57 @@ static bool CheckCollisions(Player player, Wall walls)
 	if (player.position.x + player.texture.width >= walls.position.x &&
 		player.position.x <= walls.position.x + walls.width &&
 		player.position.y + player.texture.height >= walls.position.y &&
-		player.position.y <= walls.position.y + walls.height) 
+		player.position.y <= walls.position.y + walls.height)
 	{
 		return true;
 	}
 	return false;
 }
 
-static void resetWalls(Player player, Wall& topWall, Wall& bottomWall)
+static void resetStats(Player& player, Wall& topWall, Wall& bottomWall)
+{
+	player.position.x = 100;
+	player.position.y = screenCenter.y - player.texture.height / 2;
+	player.speed = { 0, 0 };
+
+	topWall.position.x = static_cast<float>(screenWidth);
+	topWall.position.y = 0;
+	topWall.speed = 600;
+	topWall.width = 40;
+	topWall.height = static_cast<int>(GetRandomValue(100, 500));
+	topWall.coolDown = 0;
+
+	bottomWall.position.x = static_cast<float>(screenWidth);
+	bottomWall.height = screenHeight - topWall.height - topWall.sepparation;
+	bottomWall.position.y = static_cast<float>(screenHeight - bottomWall.height);
+	bottomWall.speed = 600;
+	bottomWall.width = 40;
+	bottomWall.coolDown = 0;
+}
+
+static void playerCollitionWithWalls(Player& player, Wall& topWall, Wall& bottomWall)
 {
 	if (CheckCollisions(player, topWall) || CheckCollisions(player, bottomWall))
 	{
-		topWall.position.x = static_cast<float>(screenWidth);
-		topWall.position.y = 0;
-		topWall.speed = 600;
-		topWall.width = 40;
-		topWall.height = static_cast<int>(GetRandomValue(100, 500));
-		topWall.coolDown = 0;
+		resetStats(player, topWall, bottomWall);
+	}
+}
 
-		bottomWall.position.x = static_cast<float>(screenWidth);
-		bottomWall.height = screenHeight - topWall.height - topWall.sepparation;
-		bottomWall.position.y = static_cast<float>(screenHeight - bottomWall.height);
-		bottomWall.speed = 600;
-		bottomWall.width = 40;
-		bottomWall.coolDown = 0;
+static void checkWindowCollition(Player& player, Wall& topWall, Wall& bottomWall)
+{
+	if (player.position.y <= 0)
+	{
+		player.jumpForce = 0.0f;
+		player.position.y = 0;
+	}
+	else
+	{
+		player.jumpForce = -400.0f;
+	}
+
+	if (player.position.y >= screenHeight + player.height)
+	{
+		resetStats(player, topWall, bottomWall);
 	}
 }
 
@@ -81,7 +108,9 @@ static void Update(Player& player, Wall& topWall, Wall& bottomWall, ParallaxLaye
 
 	UpdateWalls(topWall, bottomWall);
 
-	resetWalls(player, topWall, bottomWall);
+	playerCollitionWithWalls(player, topWall, bottomWall);
+
+	checkWindowCollition(player, topWall, bottomWall);
 
 	MoveLayers(layers);
 }
@@ -112,6 +141,6 @@ void PlayGame(Player& player, Wall& topWall, Wall& bottomWall, ParallaxLayer lay
 
 		player.isLoading = false;
 	}
-	
+
 	Loop(player, topWall, bottomWall, layers, currentSceen);
 }

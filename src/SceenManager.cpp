@@ -45,7 +45,6 @@ void RunGame()
 		}
 		case GameSceen::GAME:
 		{
-
 			PlayGame(player, topWall, bottomWall, layers, currentSceen);
 			break;
 		}

@@ -40,3 +40,4 @@ void GetPlayerInput(GameSceen& currentSceen);
 void UpdatePlayer(Player& player);
 
 void DrawPlayer(Player& player);
+
