@@ -276,7 +276,7 @@ static void DrawMain()
 	DrawTextEx(font, "Instructions", instructionsPos, fontSize, instrucrtionsSpacing, RAYWHITE);
 	DrawTextEx(font, "Credits", creditsPos, fontSize, 3, RAYWHITE);
 	DrawTextEx(font, "Exit", exitPos, fontSize, spacing, RAYWHITE);
-	DrawTextEx(font, "Version 0.2", versionPos, fontSize / 4.0f, spacing, RAYWHITE);
+	DrawTextEx(font, "Version 0.3", versionPos, fontSize / 4.0f, spacing, RAYWHITE);
 }
 
 void ShowMenu(GameSceen& currentSceen)

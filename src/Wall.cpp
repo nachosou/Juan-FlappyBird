@@ -1,5 +1,4 @@
 #include "Wall.h"
-
 #include "GameData.h"
 
 using namespace Globals;
@@ -14,7 +13,7 @@ void initWalls(Wall& topWall, Wall& bottomWall)
 	topWall.coolDown = 0;
 
 	bottomWall.position.x = static_cast<float>(screenWidth);
-	bottomWall.height = screenHeight - topWall.height - topWall.sepparation;
+	bottomWall.height = screenHeight - topWall.height - bottomWall.sepparation;
 	bottomWall.position.y = static_cast<float>(screenHeight - bottomWall.height);
 	bottomWall.speed = 600;
 	bottomWall.width = 40;
@@ -44,8 +43,6 @@ static void MoveWalls(Wall& topWall, Wall& bottomWall)
 
 void UpdateWalls(Wall& topWall, Wall& bottomWall)
 {
-	initWalls(topWall, bottomWall);
-
 	MoveWalls(topWall, bottomWall);
 }
 

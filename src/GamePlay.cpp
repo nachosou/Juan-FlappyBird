@@ -40,10 +40,11 @@ static void LoadGame(Player& player, ParallaxLayer layers[], Wall& topWall, Wall
 
 static bool CheckCollisions(Player player, Wall walls)
 {
-	if (player.position.x + player.width >= walls.position.x &&
+	if (player.position.x + player.texture.width >= walls.position.x &&
 		player.position.x <= walls.position.x + walls.width &&
-		player.position.y + player.height >= walls.position.y &&
-		player.position.y <= walls.position.y + walls.height) {
+		player.position.y + player.texture.height >= walls.position.y &&
+		player.position.y <= walls.position.y + walls.height) 
+	{
 		return true;
 	}
 	return false;
@@ -111,6 +112,6 @@ void PlayGame(Player& player, Wall& topWall, Wall& bottomWall, ParallaxLayer lay
 
 		player.isLoading = false;
 	}
-
+	
 	Loop(player, topWall, bottomWall, layers, currentSceen);
 }

@@ -23,11 +23,11 @@ void LoadParallaxLayers(ParallaxLayer layers[])
 	layers[4].texture = LoadTexture("Assets/Images/Parallax/layer5.png");
 	layers[4].texture.height = screenHeight;
 
-	layers[0].speed = 5.0f;
-	layers[1].speed = 15.0f;
-	layers[2].speed = 25.0f;
-	layers[3].speed = 40.0f;
-	layers[4].speed = 50.0f;
+	layers[0].speed = 200.0f;
+	layers[1].speed = 300.0f;
+	layers[2].speed = 400.0f;
+	layers[3].speed = 800.0f;
+	layers[4].speed = 800.0f;
 
 	layers[0].position = { 0, 0 };
 	layers[1].position = { 0, 0 };

@@ -12,7 +12,6 @@
 using namespace Globals;
 using namespace Parallax;
 
-
 void RunGame()
 {
 	GameSceen currentSceen = GameSceen::MENU;
@@ -46,6 +45,7 @@ void RunGame()
 		}
 		case GameSceen::GAME:
 		{
+
 			PlayGame(player, topWall, bottomWall, layers, currentSceen);
 			break;
 		}
