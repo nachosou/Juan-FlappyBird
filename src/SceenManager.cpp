@@ -40,6 +40,7 @@ void RunGame()
 		{
 		case GameSceen::MENU:
 		{
+			resetStats(player, topWall, bottomWall);
 			ShowMenu(currentSceen);
 			break;
 		}

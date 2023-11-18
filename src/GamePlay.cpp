@@ -50,11 +50,12 @@ static bool CheckCollisions(Player player, Wall walls)
 	return false;
 }
 
-static void resetStats(Player& player, Wall& topWall, Wall& bottomWall)
+void resetStats(Player& player, Wall& topWall, Wall& bottomWall)
 {
 	player.position.x = 100;
 	player.position.y = screenCenter.y - player.texture.height / 2;
 	player.speed = { 0, 0 };
+	player.totalPoints = 0;
 
 	topWall.position.x = static_cast<float>(screenWidth);
 	topWall.position.y = 0;
@@ -106,7 +107,7 @@ static void Update(Player& player, Wall& topWall, Wall& bottomWall, ParallaxLaye
 {
 	UpdatePlayer(player);
 
-	UpdateWalls(topWall, bottomWall);
+	UpdateWalls(topWall, bottomWall, player);
 
 	playerCollitionWithWalls(player, topWall, bottomWall);
 
@@ -122,6 +123,8 @@ void DrawGame(Player& player, Wall& topWall, Wall& bottomWall, ParallaxLayer lay
 	DrawPlayer(player);
 
 	DrawWalls(topWall, bottomWall);
+
+	DrawText(TextFormat("%01i", player.totalPoints), 20, 20, 40, WHITE);
 }
 
 static void Loop(Player& player, Wall& topWall, Wall& bottomWall, ParallaxLayer layers[], GameSceen& currentSceen)

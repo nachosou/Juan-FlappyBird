@@ -20,7 +20,7 @@ void initWalls(Wall& topWall, Wall& bottomWall)
 	bottomWall.coolDown = 0;
 }
 
-static void MoveWalls(Wall& topWall, Wall& bottomWall)
+static void MoveWalls(Wall& topWall, Wall& bottomWall, Player& player)
 {
 	topWall.coolDown += GetFrameTime();
 
@@ -38,12 +38,13 @@ static void MoveWalls(Wall& topWall, Wall& bottomWall)
 		bottomWall.position.x = static_cast<float>(screenWidth);
 		bottomWall.height = static_cast<int>(screenHeight - topWall.height - bottomWall.sepparation);
 		bottomWall.position.y = static_cast<float>(screenHeight - bottomWall.height);
+		player.totalPoints += 10;
 	}
 }
 
-void UpdateWalls(Wall& topWall, Wall& bottomWall)
+void UpdateWalls(Wall& topWall, Wall& bottomWall, Player& player)
 {
-	MoveWalls(topWall, bottomWall);
+	MoveWalls(topWall, bottomWall, player);
 }
 
 void DrawWalls(Wall topWall, Wall bottomWall)

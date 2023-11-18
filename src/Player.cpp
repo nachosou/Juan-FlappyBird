@@ -18,6 +18,7 @@ void LoadPlayer(Player& player)
     player.availableLives = 3;
     player.width = 60;
     player.height = 60;
+    player.totalPoints = 0;
 
     player.thousand = LoadSound("Assets/Sounds/crash.wav");
 }

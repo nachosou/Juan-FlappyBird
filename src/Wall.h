@@ -1,6 +1,7 @@
 #pragma once
 
 #include "raylib.h"
+#include "Player.h"
 
 struct Wall
 {
@@ -13,5 +14,5 @@ struct Wall
 };
 
 void initWalls(Wall& topWall, Wall& bottomWall);
-void UpdateWalls(Wall& topWall, Wall& bottomWall);
+void UpdateWalls(Wall& topWall, Wall& bottomWall, Player& player);
 void DrawWalls(Wall topWall, Wall bottomWall);

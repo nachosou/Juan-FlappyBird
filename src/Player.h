@@ -2,7 +2,6 @@
 
 #include "GameData.h"
 
-
 struct Player
 {
 	Vector2 position{};
