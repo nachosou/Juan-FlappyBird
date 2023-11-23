@@ -231,9 +231,23 @@ void DrawGame(Player& player, Wall& topWall, Wall& bottomWall, ParallaxLayer lay
 	DrawWalls(topWall, bottomWall);
 
 	DrawText(TextFormat("%01i", player.totalPoints), 20, 20, 40, WHITE);
+
 }
 
-void drawTwoPlayersGame(Player& player, Player& secondPlayer,  Wall& topWall, Wall& bottomWall, ParallaxLayer layers[])
+void DrawGame(Player& player, Player& secondPlayer, Wall& topWall, Wall& bottomWall, ParallaxLayer layers[])
+{
+	DrawLayers(layers);
+
+	DrawPlayer(player);
+
+	DrawPlayer(secondPlayer);
+
+	DrawWalls(topWall, bottomWall);
+
+	DrawText(TextFormat("%01i", player.totalPoints), 20, 20, 40, WHITE);
+}
+
+void drawTwoPlayersGame(Player& player, Player& secondPlayer, Wall& topWall, Wall& bottomWall, ParallaxLayer layers[])
 {
 	DrawLayers(layers);
 

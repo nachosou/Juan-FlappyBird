@@ -71,7 +71,7 @@ void RunGame()
 		}
 		case GameSceen::PAUSE:
 		{
-			PauseGame(player, topWall, bottomWall, layers, currentSceen, gameMode);
+			PauseGame(player, secondPlayer, topWall, bottomWall, layers, currentSceen, gameMode);
 			break;
 		}
 		case GameSceen::INSTRUCTIONS:

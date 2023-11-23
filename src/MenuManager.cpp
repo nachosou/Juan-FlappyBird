@@ -114,7 +114,7 @@ void InitMenu()
 	twoPlayersPosition.x = (screenWidth / 2 - (MeasureTextEx(font, "2 Players", fontSize, spacing).x) / 2);
 	twoPlayersPosition.y = ((500) + 15);
 
-	versionPos.y = (screenHeight - 35.0f);
+	versionPos.y = (0 + 35.0f);
 	versionPos.x = 35.0f;
 
 	backButtonPos.x = 15.0f;
@@ -265,7 +265,7 @@ static void GetInput(GameSceen& currentSceen, GameSceen& gameMode)
 			{
 				PlaySound(clickPressed);
 				currentSceen = GameSceen::TWO_PLAYER_GAME;
-				gameMode = GameSceen::SINGLE_PLAYER_GAME;
+				gameMode = GameSceen::TWO_PLAYER_GAME;
 			}
 		}
 	}
@@ -444,9 +444,9 @@ static void DrawCredits()
 	textPos.y += 55;
 	DrawTextEx(font, "Assets creator: Ignacio Gonzalez Souza", textPos, fontSize * 0.3f, spacing / 8.0f, RAYWHITE);
 	
-	textPos.x = (screenWidth / 2) - MeasureTextEx(font, "This is remake of", fontSize * 0.2f, spacing / 8.0f).x / 2.0f;
+	textPos.x = (screenWidth / 2) - MeasureTextEx(font, "This is a remake of", fontSize * 0.2f, spacing / 8.0f).x / 2.0f;
 	textPos.y += 90;
-	DrawTextEx(font, "This is remake of", textPos, fontSize * 0.2f, spacing / 8.0f, RAYWHITE);
+	DrawTextEx(font, "This is a remake of", textPos, fontSize * 0.2f, spacing / 8.0f, RAYWHITE);
 
 	textPos.x = (screenWidth / 2) - MeasureTextEx(font, "Flappy Bird made in raylib for my", fontSize * 0.2f, spacing / 8.0f).x / 2.0f;
 	textPos.y += 20;
@@ -556,13 +556,21 @@ static void GetPausedInput(GameSceen& currentSceen, GameSceen gameMode)
 	if (IsKeyPressed(MOUSE_BUTTON_LEFT))
 	{
 		PlaySound(clickPressed);
-		currentSceen = GameSceen::SINGLE_PLAYER_GAME;
+		currentSceen = gameMode;
 	}
 }
 
-void PauseGame(Player player, Wall& topWall, Wall& bottomWall, ParallaxLayer layers[], GameSceen& currentSceen, GameSceen gameMode)
+void PauseGame(Player player, Player secondPlayer, Wall& topWall, Wall& bottomWall, ParallaxLayer layers[], GameSceen& currentSceen, GameSceen gameMode)
 {
-	DrawGame(player, topWall, bottomWall, layers);
+	if (gameMode == GameSceen::SINGLE_PLAYER_GAME)
+	{
+		DrawGame(player, topWall, bottomWall, layers);
+	}
+	else
+	{
+		DrawGame(player, secondPlayer, topWall, bottomWall, layers);
+	}
+	
 
 	smallWindowPos.x = (screenWidth / 2.0f) - (smallWindow.width / 2.0f);
 	smallWindowPos.y = (screenHeight / 2.0f) - (smallWindow.height / 2.0f);
@@ -577,10 +585,6 @@ void PauseGame(Player player, Wall& topWall, Wall& bottomWall, ParallaxLayer lay
 	textPos.x = (screenWidth / 2) - MeasureTextEx(font, "PAUSED GAME", fontSize * 0.45f, spacing).x / 2.0f;
 	textPos.y = smallWindowPos.y + 45.0f;
 	DrawTextEx(font, "PAUSED GAME", textPos, fontSize * 0.45f, spacing, RAYWHITE);
-
-	textPos.x = (screenWidth / 2) - MeasureTextEx(font, "Press ESC to continue", fontSize * 0.35f, spacing / 8.0f).x / 2.0f;
-	textPos.y += 90;
-	DrawTextEx(font, "Press ESC to continue", textPos, fontSize * 0.35f, spacing / 8.0f, RAYWHITE);
 
 	GetPausedInput(currentSceen, gameMode);
 }
