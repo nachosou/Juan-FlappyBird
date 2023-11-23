@@ -35,6 +35,8 @@ namespace Assets
 	extern Vector2 creditsPos;
 	extern Vector2 exitPos;
 	extern Vector2 versionPos;
+	extern Vector2 singlePlayerPosition;
+	extern Vector2 twoPlayersPosition;
 
 	extern Vector2 bigWindowPos;
 	extern Vector2 smallWindowPos;
@@ -49,9 +51,10 @@ namespace Assets
 
 
 void InitMenu();
-void ShowMenu(GameSceen& currentSceen);
-void ShowInstructions(GameSceen& currentSceen);
-void ShowCredits(GameSceen& currentSceen);
-void PauseGame(Player player, Wall& topWall, Wall& bottomWall, ParallaxLayer layers[], GameSceen& currentSceen);
-void ShowResults(Player& player, GameSceen& currentSceen);
+void ShowMenu(GameSceen& currentSceen, GameSceen& gameMode);
+void ShowInstructions(GameSceen& currentSceen, GameSceen& gameMode);
+void ShowCredits(GameSceen& currentSceen, GameSceen& gameMode);
+void PauseGame(Player player, Wall& topWall, Wall& bottomWall, ParallaxLayer layers[], GameSceen& currentSceen, GameSceen gameMode);
+void ShowResults(Player& player, GameSceen& currentSceen, GameSceen& gameMode);
+void showGameMode(GameSceen& currentSceen, GameSceen& gameMode);
 

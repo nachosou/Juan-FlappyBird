@@ -10,7 +10,7 @@ struct Wall
 	int height = 0;
 	int width = 0;
 	float coolDown = 0;
-	int sepparation = 120;
+	int sepparation = 160;
 };
 
 void initWalls(Wall& topWall, Wall& bottomWall);

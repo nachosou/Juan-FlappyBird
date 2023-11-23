@@ -40,3 +40,11 @@ void UpdatePlayer(Player& player);
 
 void DrawPlayer(Player& player);
 
+void LoadTwoPlayer(Player& secondPlayer);
+
+void UpdateTwoPlayers(Player& secondPlayer);
+
+void DrawTwoPlayer(Player& secondPlayer);
+
+
+

@@ -23,6 +23,22 @@ void LoadPlayer(Player& player)
     player.thousand = LoadSound("Assets/Sounds/crash.wav");
 }
 
+void LoadTwoPlayer(Player& secondPlayer)
+{
+    secondPlayer.texture = LoadTexture("Assets/Images/playerTwoShip.png");
+    secondPlayer.jumpingTexture = LoadTexture("Assets/Images/playerTwoJumpingShip.png");
+    secondPlayer.position.x = 100;
+    secondPlayer.position.y = screenCenter.y - 100;
+    secondPlayer.totalPoints = 0;
+    secondPlayer.thousandCounter = 0;
+    secondPlayer.availableLives = 3;
+    secondPlayer.width = 60;
+    secondPlayer.height = 60;
+    secondPlayer.totalPoints = 0;
+
+    secondPlayer.thousand = LoadSound("Assets/Sounds/crash.wav");
+}
+
 static void MovePlayer(Player& player)
 {
     if (IsKeyPressed(KEY_SPACE) && player.position.y > 0)
@@ -40,6 +56,23 @@ static void MovePlayer(Player& player)
     }
 }
 
+static void MoveTwoPlayers(Player& secondPlayer)
+{
+    if (IsKeyPressed(KEY_UP) && secondPlayer.position.y > 0)
+    {
+        secondPlayer.speed.y = secondPlayer.jumpForce;
+        secondPlayer.isJumping = true;
+    }
+
+    secondPlayer.speed.y += secondPlayer.gravity * GetFrameTime();
+    secondPlayer.position.y += secondPlayer.speed.y * GetFrameTime();
+
+    if (secondPlayer.isJumping && secondPlayer.speed.y > 0)
+    {
+        secondPlayer.isJumping = false;
+    }
+}
+
 static Texture2D changeTexture(Player& player)
 {
     if (player.isJumping == true)
@@ -49,6 +82,18 @@ static Texture2D changeTexture(Player& player)
     else
     {
         return player.texture;
+    }
+}
+
+static Texture2D changeSecondPlayerTexture(Player& secondPlayer)
+{
+    if (secondPlayer.isJumping == true)
+    {
+        return secondPlayer.jumpingTexture;
+    }
+    else
+    {
+        return secondPlayer.texture;
     }
 }
 
@@ -72,6 +117,18 @@ void UpdatePlayer(Player& player)
     MovePlayer(player);
 }
 
+void UpdateTwoPlayers(Player& secondPlayer)
+{
+    if (secondPlayer.totalPoints >= secondPlayer.thousandCounter + 1000)
+    {
+        PlaySound(secondPlayer.thousand);
+
+        secondPlayer.thousandCounter += 1000;
+    }
+
+    MoveTwoPlayers(secondPlayer);
+}
+
 void DrawPlayer(Player& player)
 {
     Rectangle dest = { player.GetCenter().x, player.GetCenter().y, static_cast<float>(player.texture.width), static_cast<float>(player.texture.height) };
@@ -79,4 +136,13 @@ void DrawPlayer(Player& player)
     
     player.source = { 0, 0, static_cast<float>(player.texture.width), static_cast<float>(player.texture.height) };
     DrawTexturePro(changeTexture(player), player.source, dest, origin, 0.0f, RAYWHITE);
+}
+
+void DrawTwoPlayer(Player& secondPlayer)
+{
+    Rectangle dest2 = { secondPlayer.GetCenter().x, secondPlayer.GetCenter().y, static_cast<float>(secondPlayer.texture.width), static_cast<float>(secondPlayer.texture.height) };
+    Vector2 origin2 = { static_cast<float>(secondPlayer.texture.width / 2), static_cast<float>(secondPlayer.texture.height / 2) };
+
+    secondPlayer.source = { 0, 0, static_cast<float>(secondPlayer.texture.width), static_cast<float>(secondPlayer.texture.height) };
+    DrawTexturePro(changeSecondPlayerTexture(secondPlayer), secondPlayer.source, dest2, origin2, 0.0f, RAYWHITE);
 }

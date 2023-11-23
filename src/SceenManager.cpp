@@ -15,9 +15,11 @@ using namespace Parallax;
 void RunGame()
 {
 	GameSceen currentSceen = GameSceen::MENU;
+	GameSceen gameMode = GameSceen::SINGLE_PLAYER_GAME;
 	ParallaxLayer* layers = new ParallaxLayer[layersQnty];
 
 	Player player;
+	Player secondPlayer;
 	Wall topWall;
 	Wall bottomWall;
 
@@ -31,6 +33,9 @@ void RunGame()
 
 	InitMenu();
 
+	LoadPlayer(player);
+	LoadTwoPlayer(secondPlayer);
+
 	while (currentSceen != GameSceen::EXIT)
 	{
 		BeginDrawing();
@@ -39,34 +44,44 @@ void RunGame()
 		switch (currentSceen)
 		{
 		case GameSceen::MENU:
-		{
-			resetStats(player, topWall, bottomWall);
-			ShowMenu(currentSceen);
+		{		
+			resetTwoPlayersStats(player, secondPlayer, topWall, bottomWall);
+			ShowMenu(currentSceen, gameMode);
 			break;
 		}
-		case GameSceen::GAME:
+		case GameSceen::SINGLE_PLAYER_GAME:
 		{
-			PlayGame(player, topWall, bottomWall, layers, currentSceen);
+			singlePlayerGame(player, topWall, bottomWall, layers, currentSceen);
+			break;
+		}
+		case GameSceen::TWO_PLAYER_GAME:
+		{
+			twoPlayerGame(player, secondPlayer, topWall, bottomWall, layers, currentSceen);
+			break;
+		}
+		case GameSceen::GAMEMODE:
+		{
+			showGameMode(currentSceen, gameMode);
 			break;
 		}
 		case GameSceen::RESULTS:
 		{
-			ShowResults(player, currentSceen);
+			ShowResults(player, currentSceen, gameMode);
 			break;
 		}
 		case GameSceen::PAUSE:
 		{
-			PauseGame(player, topWall, bottomWall, layers, currentSceen);
+			PauseGame(player, topWall, bottomWall, layers, currentSceen, gameMode);
 			break;
 		}
 		case GameSceen::INSTRUCTIONS:
 		{
-			ShowInstructions(currentSceen);
+			ShowInstructions(currentSceen, gameMode);
 			break;
 		}
 		case GameSceen::CREDITS:
 		{
-			ShowCredits(currentSceen);
+			ShowCredits(currentSceen, gameMode);
 			break;
 		}
 		case GameSceen::EXIT:
