@@ -570,7 +570,6 @@ void PauseGame(Player player, Player secondPlayer, Wall& topWall, Wall& bottomWa
 	{
 		DrawGame(player, secondPlayer, topWall, bottomWall, layers);
 	}
-	
 
 	smallWindowPos.x = (screenWidth / 2.0f) - (smallWindow.width / 2.0f);
 	smallWindowPos.y = (screenHeight / 2.0f) - (smallWindow.height / 2.0f);
@@ -583,7 +582,7 @@ void PauseGame(Player player, Player secondPlayer, Wall& topWall, Wall& bottomWa
 	Vector2 textPos;
 
 	textPos.x = (screenWidth / 2) - MeasureTextEx(font, "PAUSED GAME", fontSize * 0.45f, spacing).x / 2.0f;
-	textPos.y = smallWindowPos.y + 45.0f;
+	textPos.y = smallWindowPos.y + 100.0f;
 	DrawTextEx(font, "PAUSED GAME", textPos, fontSize * 0.45f, spacing, RAYWHITE);
 
 	GetPausedInput(currentSceen, gameMode);
