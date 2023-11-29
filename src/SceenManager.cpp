@@ -92,6 +92,7 @@ void RunGame()
 		}
 		case GameSceen::LOSE:
 		{
+			resetStats(player, topWall, bottomWall);
 			resetTwoPlayersStats(player, secondPlayer, topWall, bottomWall);
 			loseScreen(player, currentSceen, gameMode);
 			break;

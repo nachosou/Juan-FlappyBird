@@ -29,6 +29,8 @@ namespace Assets
 
 	extern Sound click{};
 	extern Sound clickPressed{};
+	extern Sound nachoCredits{};
+	extern Sound juanCredits{};
 
 	extern Vector2 playPos{};
 	extern Vector2 playPosContainer{};
@@ -87,6 +89,8 @@ void InitMenu(Player player)
 
 	click = LoadSound("Assets/Sounds/click.wav");
 	clickPressed = LoadSound("Assets/Sounds/clickPressed.wav");
+	nachoCredits = LoadSound("Assets/Sounds/nachoCredits.wav");
+	juanCredits = LoadSound("Assets/Sounds/juanCredits.wav");
 
 	font = LoadFont("Assets/Fonts/04B_30__.TTF");
 	fontSize = font.baseSize * 2.0f;
@@ -312,7 +316,7 @@ static void GetInput(GameSceen& currentSceen, GameSceen& gameMode)
 
 			if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
 			{
-				PlaySound(clickPressed);
+				PlaySound(nachoCredits);
 				OpenURL("https://nachosou.itch.io");
 			}	
 		}
@@ -329,7 +333,7 @@ static void GetInput(GameSceen& currentSceen, GameSceen& gameMode)
 
 			if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
 			{
-				PlaySound(clickPressed);
+				PlaySound(juanCredits);
 				OpenURL("https://juandigilio.itch.io");
 			}
 		}

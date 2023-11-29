@@ -29,6 +29,8 @@ namespace Assets
 
 	extern Sound click;
 	extern Sound clickPressed;
+	extern Sound nachoCredits;
+	extern Sound juanCredits;
 
 	extern Vector2 playPos;
 	extern Vector2 instructionsPos;

@@ -24,6 +24,11 @@ static void MoveWalls(Wall& topWall, Wall& bottomWall, Player& player)
 {
 	topWall.coolDown += GetFrameTime();
 
+	if (player.totalPoints == 0)
+	{
+		player.pointsAux = 0;
+	}
+
 	if (topWall.coolDown > 1)
 	{
 		topWall.position.x -= topWall.speed * GetFrameTime();
@@ -37,11 +42,7 @@ static void MoveWalls(Wall& topWall, Wall& bottomWall, Player& player)
 		topWall.height = static_cast<int>(GetRandomValue(100, 500));
 		bottomWall.position.x = static_cast<float>(screenWidth);
 		bottomWall.height = static_cast<int>(screenHeight - topWall.height - bottomWall.sepparation);
-		bottomWall.position.y = static_cast<float>(screenHeight - bottomWall.height);
-		if (player.totalPoints == 0)
-		{
-			player.pointsAux = 0;
-		}
+		bottomWall.position.y = static_cast<float>(screenHeight - bottomWall.height);	
 		player.totalPoints += 10;
 		player.pointsAux += 10;
 	}

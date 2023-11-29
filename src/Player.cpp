@@ -20,7 +20,7 @@ void LoadPlayer(Player& player)
     player.height = 60;
     player.totalPoints = 0;
 
-    player.thousand = LoadSound("Assets/Sounds/crash.wav");
+    player.jump = LoadSound("Assets/Sounds/jump.wav");
 }
 
 void LoadTwoPlayer(Player& secondPlayer)
@@ -36,7 +36,7 @@ void LoadTwoPlayer(Player& secondPlayer)
     secondPlayer.height = 60;
     secondPlayer.totalPoints = 0;
 
-    secondPlayer.thousand = LoadSound("Assets/Sounds/crash.wav");
+    secondPlayer.jump = LoadSound("Assets/Sounds/jump.wav");
 }
 
 static void MovePlayer(Player& player)
@@ -45,6 +45,7 @@ static void MovePlayer(Player& player)
     {
         player.speed.y = player.jumpForce;
         player.isJumping = true;
+        PlaySound(player.jump);
     }
 
     player.speed.y += player.gravity * GetFrameTime();
@@ -62,6 +63,7 @@ static void MoveTwoPlayers(Player& secondPlayer)
     {
         secondPlayer.speed.y = secondPlayer.jumpForce;
         secondPlayer.isJumping = true;
+        PlaySound(secondPlayer.jump);
     }
 
     secondPlayer.speed.y += secondPlayer.gravity * GetFrameTime();
@@ -107,25 +109,11 @@ void GetPlayerInput(GameSceen& currentSceen)
 
 void UpdatePlayer(Player& player)
 {
-    if (player.totalPoints >= player.thousandCounter + 1000)
-    {
-        PlaySound(player.thousand);
-
-        player.thousandCounter += 1000;
-    }
-
     MovePlayer(player);
 }
 
 void UpdateTwoPlayers(Player& secondPlayer)
 {
-    if (secondPlayer.totalPoints >= secondPlayer.thousandCounter + 1000)
-    {
-        PlaySound(secondPlayer.thousand);
-
-        secondPlayer.thousandCounter += 1000;
-    }
-
     MoveTwoPlayers(secondPlayer);
 }
 
