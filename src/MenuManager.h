@@ -37,6 +37,8 @@ namespace Assets
 	extern Vector2 versionPos;
 	extern Vector2 singlePlayerPosition;
 	extern Vector2 twoPlayersPosition;
+	extern Vector2 scoreText;
+	extern Vector2 score;
 
 	extern Vector2 bigWindowPos;
 	extern Vector2 smallWindowPos;
@@ -49,12 +51,12 @@ namespace Assets
 	extern bool isClicking;
 }
 
-
-void InitMenu();
+void InitMenu(Player player);
 void ShowMenu(GameSceen& currentSceen, GameSceen& gameMode);
 void ShowInstructions(GameSceen& currentSceen, GameSceen& gameMode);
 void ShowCredits(GameSceen& currentSceen, GameSceen& gameMode);
 void PauseGame(Player player, Player secondPlayer, Wall& topWall, Wall& bottomWall, ParallaxLayer layers[], GameSceen& currentSceen, GameSceen gameMode);
 void ShowResults(Player& player, GameSceen& currentSceen, GameSceen& gameMode);
 void showGameMode(GameSceen& currentSceen, GameSceen& gameMode);
+void loseScreen(Player player, GameSceen& currentSceen, GameSceen gameMode);
 

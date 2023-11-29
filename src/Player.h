@@ -11,6 +11,7 @@ struct Player
 	float jumpForce = -400.0f;
 	int availableLives{};
 	int totalPoints{};
+	int pointsAux{};
 	bool isAlive{};
 	bool isJumping = false;
 	int frame = 0;

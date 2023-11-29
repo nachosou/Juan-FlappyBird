@@ -46,6 +46,8 @@ namespace Assets
 	extern Vector2 versionPos{};
 	extern Vector2 singlePlayerPosition{};
 	extern Vector2 twoPlayersPosition{};
+	extern Vector2 score{};
+	extern Vector2 scoreText{};
 	
 	extern Vector2 gitHubPos{};
 	extern Vector2 gitHubSize{};
@@ -58,7 +60,7 @@ namespace Assets
 using namespace Assets;
 using namespace Globals;
 
-void InitMenu()
+void InitMenu(Player player)
 {
 	background = LoadTexture("Assets/Images/Menu/background.png");
 	smallContainer = LoadTexture("Assets/Images/Menu/smallContainer.png");
@@ -113,6 +115,11 @@ void InitMenu()
 	singlePlayerPosition.y = ((300) + 15);
 	twoPlayersPosition.x = (screenWidth / 2 - (MeasureTextEx(font, "2 Players", fontSize, spacing).x) / 2);
 	twoPlayersPosition.y = ((500) + 15);
+
+	score.x = (screenWidth / 2 + (MeasureTextEx(font, TextFormat("%01i", player.totalPoints), fontSize, spacing).x) / 2);
+	score.y = (315);
+	scoreText.x = (screenWidth / 2 - (MeasureTextEx(font, "Score: ", fontSize, spacing).x) / 2) - 100;
+	scoreText.y = (315);
 
 	versionPos.y = (0 + 35.0f);
 	versionPos.x = 35.0f;
@@ -356,6 +363,84 @@ void drawGameMode()
 	DrawTextureEx(largeContainer, { static_cast<float>(screenWidth / 2 - largeContainer.width / 2),  static_cast<float>(500) }, 0, 1.0, WHITE);
 	DrawTextEx(font, "1 Player", singlePlayerPosition, fontSize, 3, RAYWHITE);
 	DrawTextEx(font, "2 Players", twoPlayersPosition, fontSize, 3, RAYWHITE);
+}
+
+static void loseScreenInput(GameSceen& currentSceen, GameSceen gameMode)
+{
+	int mouseX = GetMouseX();
+	int mouseY = GetMouseY();
+
+	if ((mouseX > backButtonPos.x && mouseX < backButtonPos.x + backButton.width) && (mouseY > backButtonPos.y && mouseY < backButtonPos.y + backButton.height))
+	{
+		DrawTextureV(backButtonAct, backButtonPos, WHITE);
+
+		if (!isClicking)
+		{
+			isClicking = true;
+
+			PlaySound(click);
+		}
+
+		if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+		{
+			PlaySound(clickPressed);
+			currentSceen = gameMode;
+		}
+	}
+	else if ((mouseX > menuButtonPos.x && mouseX < menuButtonPos.x + menuButton.width) && (mouseY > menuButtonPos.y && mouseY < menuButtonPos.y + menuButton.height))
+	{
+		DrawTextureV(menuButtonAct, menuButtonPos, WHITE);
+
+		if (!isClicking)
+		{
+			isClicking = true;
+
+			PlaySound(click);
+		}
+
+		if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+		{
+			PlaySound(clickPressed);
+			currentSceen = GameSceen::MENU;
+			loading = true;
+			StopMusicStream(gameLoopMusic);
+			PlayMusicStream(menuMusic);
+		}
+	}
+	else if ((mouseX > exitButtonPos.x && mouseX < exitButtonPos.x + exitButton.width) && (mouseY > exitButtonPos.y && mouseY < exitButtonPos.y + exitButton.height))
+	{
+		DrawTextureV(exitButtonAct, exitButtonPos, WHITE);
+
+		if (!isClicking)
+		{
+			isClicking = true;
+
+			PlaySound(click);
+		}
+
+		if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+		{
+			PlaySound(clickPressed);
+			currentSceen = GameSceen::EXIT;
+		}
+	}
+	else
+	{
+		isClicking = false;
+	}
+}
+
+void loseScreen(Player player, GameSceen& currentSceen, GameSceen gameMode)
+{
+	DrawTexture(background, 0, 0, WHITE);
+	DrawTextureV(backButton, backButtonPos, WHITE);
+	DrawTextureEx(largeContainer, { static_cast<float>(screenWidth / 2 - largeContainer.width / 2),  static_cast<float>(300) }, 0, 1.0, WHITE);
+	DrawTextureV(menuButton, menuButtonPos, WHITE);
+	DrawTextureV(exitButton, exitButtonPos, WHITE);
+	DrawTextEx(font, "Score: ", scoreText, fontSize, 3.0f, WHITE);
+	DrawTextEx(font, TextFormat("%01i", player.pointsAux), score, fontSize, 1.0f, ORANGE);
+
+	loseScreenInput(currentSceen, gameMode);
 }
 
 void showGameMode(GameSceen& currentSceen, GameSceen& gameMode)

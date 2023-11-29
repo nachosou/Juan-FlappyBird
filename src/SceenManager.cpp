@@ -31,7 +31,7 @@ void RunGame()
 
 	InitAudioDevice();
 
-	InitMenu();
+	InitMenu(player);
 
 	LoadPlayer(player);
 	LoadTwoPlayer(secondPlayer);
@@ -44,7 +44,7 @@ void RunGame()
 		switch (currentSceen)
 		{
 		case GameSceen::MENU:
-		{		
+		{
 			resetTwoPlayersStats(player, secondPlayer, topWall, bottomWall);
 			ShowMenu(currentSceen, gameMode);
 			break;
@@ -90,8 +90,15 @@ void RunGame()
 
 			break;
 		}
+		case GameSceen::LOSE:
+		{
+			resetTwoPlayersStats(player, secondPlayer, topWall, bottomWall);
+			loseScreen(player, currentSceen, gameMode);
+			break;
 		}
-
+		}
+		
 		EndDrawing();
+		
 	}
 }

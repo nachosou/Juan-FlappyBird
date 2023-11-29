@@ -113,30 +113,28 @@ void resetTwoPlayersStats(Player& firstPlayer, Player& secondPlayer, Wall& topWa
 	bottomWall.coolDown = 0;
 }
 
-static void playerCollitionWithWalls(Player& player, Wall& topWall, Wall& bottomWall)
+static void playerCollitionWithWalls(Player& player, Wall& topWall, Wall& bottomWall, GameSceen& currentScreen)
 {
 	if (CheckCollisions(player, topWall) || CheckCollisions(player, bottomWall))
 	{
-		resetStats(player, topWall, bottomWall);
+		currentScreen = GameSceen::LOSE;
 	}
 }
 
-static void twoPlayersCollitionWithWalls(Player& firstPlayer, Player& secondPlayer, Wall& topWall, Wall& bottomWall)
+static void twoPlayersCollitionWithWalls(Player& firstPlayer, Player& secondPlayer, Wall& topWall, Wall& bottomWall, GameSceen& currentScreen)
 {
 	if (CheckCollisions(firstPlayer, topWall) || CheckCollisions(firstPlayer, bottomWall))
 	{
-		resetStats(firstPlayer, topWall, bottomWall);
-		resetStats(secondPlayer, topWall, bottomWall);
+		currentScreen = GameSceen::LOSE;
 	}
 
 	if (CheckCollisions(secondPlayer, topWall) || CheckCollisions(secondPlayer, bottomWall))
 	{
-		resetStats(firstPlayer, topWall, bottomWall);
-		resetStats(secondPlayer, topWall, bottomWall);
+		currentScreen = GameSceen::LOSE;
 	}
 }
 
-static void checkWindowCollition(Player& player, Wall& topWall, Wall& bottomWall)
+static void checkWindowCollition(Player& player, GameSceen& currentScreen)
 {
 	if (player.position.y <= 0)
 	{
@@ -150,11 +148,11 @@ static void checkWindowCollition(Player& player, Wall& topWall, Wall& bottomWall
 
 	if (player.position.y >= screenHeight + player.height)
 	{
-		resetStats(player, topWall, bottomWall);
+		currentScreen = GameSceen::LOSE;
 	}
 }
 
-static void checkTwoPlayersWindowCollition(Player& firstPlayer, Player& secondPlayer, Wall& topWall, Wall& bottomWall)
+static void checkTwoPlayersWindowCollition(Player& firstPlayer, Player& secondPlayer, GameSceen& currentScreen)
 {
 	if (firstPlayer.position.y <= 0)
 	{
@@ -168,8 +166,7 @@ static void checkTwoPlayersWindowCollition(Player& firstPlayer, Player& secondPl
 
 	if (firstPlayer.position.y >= screenHeight + firstPlayer.height)
 	{
-		resetStats(firstPlayer, topWall, bottomWall);
-		resetStats(secondPlayer, topWall, bottomWall);
+		currentScreen = GameSceen::LOSE;
 	}
 
 	if (secondPlayer.position.y <= 0)
@@ -184,8 +181,7 @@ static void checkTwoPlayersWindowCollition(Player& firstPlayer, Player& secondPl
 
 	if (secondPlayer.position.y >= screenHeight + secondPlayer.height)
 	{
-		resetStats(firstPlayer, topWall, bottomWall);
-		resetStats(secondPlayer, topWall, bottomWall);
+		currentScreen = GameSceen::LOSE;
 	}
 }
 
@@ -194,20 +190,20 @@ static void GetInput(GameSceen& currentSceen)
 	GetPlayerInput(currentSceen);
 }
 
-static void Update(Player& player, Wall& topWall, Wall& bottomWall, ParallaxLayer layers[])
+static void Update(Player& player, Wall& topWall, Wall& bottomWall, ParallaxLayer layers[], GameSceen& currentSceen)
 {
 	UpdatePlayer(player);
 
 	UpdateWalls(topWall, bottomWall, player);
 
-	playerCollitionWithWalls(player, topWall, bottomWall);
+	playerCollitionWithWalls(player, topWall, bottomWall, currentSceen);
 
-	checkWindowCollition(player, topWall, bottomWall);
+	checkWindowCollition(player, currentSceen);
 
 	MoveLayers(layers);
 }
 
-static void twoPlayersUpdate(Player& firstPlayer, Player& secondPlayer, Wall& topWall, Wall& bottomWall, ParallaxLayer layers[])
+static void twoPlayersUpdate(Player& firstPlayer, Player& secondPlayer, Wall& topWall, Wall& bottomWall, ParallaxLayer layers[], GameSceen& currentScreen)
 {
 	UpdatePlayer(firstPlayer);
 
@@ -215,9 +211,9 @@ static void twoPlayersUpdate(Player& firstPlayer, Player& secondPlayer, Wall& to
 
 	UpdateWalls(topWall, bottomWall, firstPlayer);
 
-	twoPlayersCollitionWithWalls(firstPlayer, secondPlayer, topWall, bottomWall);
+	twoPlayersCollitionWithWalls(firstPlayer, secondPlayer, topWall, bottomWall, currentScreen);
 
-	checkTwoPlayersWindowCollition(firstPlayer, secondPlayer, topWall, bottomWall);
+	checkTwoPlayersWindowCollition(firstPlayer, secondPlayer, currentScreen);
 
 	MoveLayers(layers);
 }
@@ -264,7 +260,7 @@ static void Loop(Player& player, Wall& topWall, Wall& bottomWall, ParallaxLayer 
 {
 	GetInput(currentSceen);
 
-	Update(player, topWall, bottomWall, layers);
+	Update(player, topWall, bottomWall, layers, currentSceen);
 
 	DrawGame(player, topWall, bottomWall, layers);
 }
@@ -273,7 +269,7 @@ static void twoPlayersLoop(Player& firstPlayer, Player& secondPlayer, Wall& topW
 {
 	GetInput(currentSceen);
 
-	twoPlayersUpdate(firstPlayer, secondPlayer, topWall, bottomWall, layers);
+	twoPlayersUpdate(firstPlayer, secondPlayer, topWall, bottomWall, layers, currentSceen);
 
 	drawTwoPlayersGame(firstPlayer, secondPlayer, topWall, bottomWall, layers);
 }

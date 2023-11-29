@@ -13,6 +13,7 @@ enum class GameSceen
 	INSTRUCTIONS,
 	CREDITS,
 	EXIT,
+	LOSE
 };
 
 namespace Globals

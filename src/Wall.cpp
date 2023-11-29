@@ -38,7 +38,12 @@ static void MoveWalls(Wall& topWall, Wall& bottomWall, Player& player)
 		bottomWall.position.x = static_cast<float>(screenWidth);
 		bottomWall.height = static_cast<int>(screenHeight - topWall.height - bottomWall.sepparation);
 		bottomWall.position.y = static_cast<float>(screenHeight - bottomWall.height);
+		if (player.totalPoints == 0)
+		{
+			player.pointsAux = 0;
+		}
 		player.totalPoints += 10;
+		player.pointsAux += 10;
 	}
 }
 
