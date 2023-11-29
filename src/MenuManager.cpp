@@ -649,15 +649,15 @@ static void GetPausedInput(GameSceen& currentSceen, GameSceen gameMode)
 	}
 }
 
-void PauseGame(Player player, Player secondPlayer, Wall& topWall, Wall& bottomWall, ParallaxLayer layers[], GameSceen& currentSceen, GameSceen gameMode)
+void PauseGame(Player player, Player secondPlayer, Wall& topWall, Wall& bottomWall, ParallaxLayer layers[], GameSceen& currentSceen, GameSceen gameMode, Color wallColor)
 {
 	if (gameMode == GameSceen::SINGLE_PLAYER_GAME)
 	{
-		DrawGame(player, topWall, bottomWall, layers);
+		DrawGame(player, topWall, bottomWall, layers, wallColor);
 	}
 	else
 	{
-		DrawGame(player, secondPlayer, topWall, bottomWall, layers);
+		DrawGame(player, secondPlayer, topWall, bottomWall, layers, wallColor);
 	}
 
 	smallWindowPos.x = (screenWidth / 2.0f) - (smallWindow.width / 2.0f);

@@ -57,7 +57,7 @@ void InitMenu(Player player);
 void ShowMenu(GameSceen& currentSceen, GameSceen& gameMode);
 void ShowInstructions(GameSceen& currentSceen, GameSceen& gameMode);
 void ShowCredits(GameSceen& currentSceen, GameSceen& gameMode);
-void PauseGame(Player player, Player secondPlayer, Wall& topWall, Wall& bottomWall, ParallaxLayer layers[], GameSceen& currentSceen, GameSceen gameMode);
+void PauseGame(Player player, Player secondPlayer, Wall& topWall, Wall& bottomWall, ParallaxLayer layers[], GameSceen& currentSceen, GameSceen gameMode, Color wallColor);
 void ShowResults(Player& player, GameSceen& currentSceen, GameSceen& gameMode);
 void showGameMode(GameSceen& currentSceen, GameSceen& gameMode);
 void loseScreen(Player player, GameSceen& currentSceen, GameSceen gameMode);

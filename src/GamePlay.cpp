@@ -218,19 +218,19 @@ static void twoPlayersUpdate(Player& firstPlayer, Player& secondPlayer, Wall& to
 	MoveLayers(layers);
 }
 
-void DrawGame(Player& player, Wall& topWall, Wall& bottomWall, ParallaxLayer layers[])
+void DrawGame(Player& player, Wall& topWall, Wall& bottomWall, ParallaxLayer layers[], Color wallColor)
 {
 	DrawLayers(layers);
 
 	DrawPlayer(player);
 
-	DrawWalls(topWall, bottomWall);
+	DrawWalls(topWall, bottomWall, wallColor);
 
 	DrawText(TextFormat("%01i", player.totalPoints), 20, 20, 40, WHITE);
 
 }
 
-void DrawGame(Player& player, Player& secondPlayer, Wall& topWall, Wall& bottomWall, ParallaxLayer layers[])
+void DrawGame(Player& player, Player& secondPlayer, Wall& topWall, Wall& bottomWall, ParallaxLayer layers[], Color wallColor)
 {
 	DrawLayers(layers);
 
@@ -238,12 +238,12 @@ void DrawGame(Player& player, Player& secondPlayer, Wall& topWall, Wall& bottomW
 
 	DrawPlayer(secondPlayer);
 
-	DrawWalls(topWall, bottomWall);
+	DrawWalls(topWall, bottomWall, wallColor);
 
 	DrawText(TextFormat("%01i", player.totalPoints), 20, 20, 40, WHITE);
 }
 
-void drawTwoPlayersGame(Player& player, Player& secondPlayer, Wall& topWall, Wall& bottomWall, ParallaxLayer layers[])
+void drawTwoPlayersGame(Player& player, Player& secondPlayer, Wall& topWall, Wall& bottomWall, ParallaxLayer layers[], Color wallColor)
 {
 	DrawLayers(layers);
 
@@ -251,30 +251,30 @@ void drawTwoPlayersGame(Player& player, Player& secondPlayer, Wall& topWall, Wal
 
 	DrawTwoPlayer(secondPlayer);
 
-	DrawWalls(topWall, bottomWall);
+	DrawWalls(topWall, bottomWall, wallColor);
 
 	DrawText(TextFormat("%01i", player.totalPoints), 20, 20, 40, WHITE);
 }
 
-static void Loop(Player& player, Wall& topWall, Wall& bottomWall, ParallaxLayer layers[], GameSceen& currentSceen)
+static void Loop(Player& player, Wall& topWall, Wall& bottomWall, ParallaxLayer layers[], GameSceen& currentSceen, Color wallColor)
 {
 	GetInput(currentSceen);
 
 	Update(player, topWall, bottomWall, layers, currentSceen);
 
-	DrawGame(player, topWall, bottomWall, layers);
+	DrawGame(player, topWall, bottomWall, layers, wallColor);
 }
 
-static void twoPlayersLoop(Player& firstPlayer, Player& secondPlayer, Wall& topWall, Wall& bottomWall, ParallaxLayer layers[], GameSceen& currentSceen)
+static void twoPlayersLoop(Player& firstPlayer, Player& secondPlayer, Wall& topWall, Wall& bottomWall, ParallaxLayer layers[], GameSceen& currentSceen, Color wallColor)
 {
 	GetInput(currentSceen);
 
 	twoPlayersUpdate(firstPlayer, secondPlayer, topWall, bottomWall, layers, currentSceen);
 
-	drawTwoPlayersGame(firstPlayer, secondPlayer, topWall, bottomWall, layers);
+	drawTwoPlayersGame(firstPlayer, secondPlayer, topWall, bottomWall, layers, wallColor);
 }
 
-void singlePlayerGame(Player& player, Wall& topWall, Wall& bottomWall, ParallaxLayer layers[], GameSceen& currentSceen)
+void singlePlayerGame(Player& player, Wall& topWall, Wall& bottomWall, ParallaxLayer layers[], GameSceen& currentSceen, Color wallColor)
 {
 	if (player.isLoading)
 	{
@@ -283,10 +283,10 @@ void singlePlayerGame(Player& player, Wall& topWall, Wall& bottomWall, ParallaxL
 		player.isLoading = false;
 	}
 
-	Loop(player, topWall, bottomWall, layers, currentSceen);
+	Loop(player, topWall, bottomWall, layers, currentSceen, wallColor);
 }
 
-void twoPlayerGame(Player& firstPlayer, Player& secondPlayer, Wall& topWall, Wall& bottomWall, ParallaxLayer layers[], GameSceen& currentSceen)
+void twoPlayerGame(Player& firstPlayer, Player& secondPlayer, Wall& topWall, Wall& bottomWall, ParallaxLayer layers[], GameSceen& currentSceen, Color wallColor)
 {
 	if (firstPlayer.isLoading)
 	{
@@ -295,5 +295,5 @@ void twoPlayerGame(Player& firstPlayer, Player& secondPlayer, Wall& topWall, Wal
 		firstPlayer.isLoading = false;
 	}
 
-	twoPlayersLoop(firstPlayer, secondPlayer, topWall, bottomWall, layers, currentSceen);
+	twoPlayersLoop(firstPlayer, secondPlayer, topWall, bottomWall, layers, currentSceen, wallColor);
 }

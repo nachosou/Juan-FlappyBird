@@ -53,8 +53,8 @@ void UpdateWalls(Wall& topWall, Wall& bottomWall, Player& player)
 	MoveWalls(topWall, bottomWall, player);
 }
 
-void DrawWalls(Wall topWall, Wall bottomWall)
+void DrawWalls(Wall topWall, Wall bottomWall, Color wallColor)
 {
-	DrawRectangle(static_cast<int>(topWall.position.x), static_cast<int>(topWall.position.y), topWall.width, topWall.height, GREEN);
-	DrawRectangle(static_cast<int>(bottomWall.position.x), static_cast<int>(bottomWall.position.y), bottomWall.width, bottomWall.height, GREEN);
+	DrawRectangle(static_cast<int>(topWall.position.x), static_cast<int>(topWall.position.y), topWall.width, topWall.height, wallColor);
+	DrawRectangle(static_cast<int>(bottomWall.position.x), static_cast<int>(bottomWall.position.y), bottomWall.width, bottomWall.height, wallColor);
 }

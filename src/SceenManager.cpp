@@ -27,7 +27,7 @@ void RunGame()
 
 	SetConfigFlags(FLAG_MSAA_4X_HINT);
 
-	InitWindow(screenWidth, screenHeight, "Flappy-Birds");
+	InitWindow(screenWidth, screenHeight, "Interstellar Incursion");
 
 	InitAudioDevice();
 
@@ -51,12 +51,12 @@ void RunGame()
 		}
 		case GameSceen::SINGLE_PLAYER_GAME:
 		{
-			singlePlayerGame(player, topWall, bottomWall, layers, currentSceen);
+			singlePlayerGame(player, topWall, bottomWall, layers, currentSceen, MAROON);
 			break;
 		}
 		case GameSceen::TWO_PLAYER_GAME:
 		{
-			twoPlayerGame(player, secondPlayer, topWall, bottomWall, layers, currentSceen);
+			twoPlayerGame(player, secondPlayer, topWall, bottomWall, layers, currentSceen, MAROON);
 			break;
 		}
 		case GameSceen::GAMEMODE:
@@ -71,7 +71,7 @@ void RunGame()
 		}
 		case GameSceen::PAUSE:
 		{
-			PauseGame(player, secondPlayer, topWall, bottomWall, layers, currentSceen, gameMode);
+			PauseGame(player, secondPlayer, topWall, bottomWall, layers, currentSceen, gameMode, MAROON);
 			break;
 		}
 		case GameSceen::INSTRUCTIONS:
