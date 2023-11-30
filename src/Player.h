@@ -22,6 +22,7 @@ struct Player
 
 	int thousandCounter{};
 	Sound jump{};
+	Sound crash{};
 
 	Texture2D texture{};
 	Texture2D jumpingTexture{};

@@ -12,9 +12,6 @@ namespace Globals
 	extern int totalWalls = 6;
 	extern double lastWall{};
 
-	extern Music menuMusic{};
-	extern Music gameLoopMusic{};
-
 	extern Font font{};
 	extern float fontSize{};
 	extern float spacing = 8.0f;

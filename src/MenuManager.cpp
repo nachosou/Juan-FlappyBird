@@ -31,6 +31,7 @@ namespace Assets
 	extern Sound clickPressed{};
 	extern Sound nachoCredits{};
 	extern Sound juanCredits{};
+	extern Sound easterEgg{};
 
 	extern Vector2 playPos{};
 	extern Vector2 playPosContainer{};
@@ -80,17 +81,11 @@ void InitMenu(Player player)
 	resumeButton = LoadTexture("Assets/Images/Menu/resumeBtn.png");
 	resumeButtonAct = LoadTexture("Assets/Images/Menu/resumeBtnAct.png");
 
-	menuMusic = LoadMusicStream("Assets/Sounds/menu.wav");
-	menuMusic.looping = true;
-
-	gameLoopMusic = LoadMusicStream("Assets/Sounds/gameLoop.wav");
-	gameLoopMusic.looping = true;
-	SetMusicVolume(gameLoopMusic, 0.1f);
-
 	click = LoadSound("Assets/Sounds/click.wav");
 	clickPressed = LoadSound("Assets/Sounds/clickPressed.wav");
 	nachoCredits = LoadSound("Assets/Sounds/nachoCredits.wav");
 	juanCredits = LoadSound("Assets/Sounds/juanCredits.wav");
+	easterEgg = LoadSound("Assets/Sounds/easterEgg.wav");
 
 	font = LoadFont("Assets/Fonts/04B_30__.TTF");
 	fontSize = font.baseSize * 2.0f;
@@ -159,8 +154,6 @@ static void GetInput(GameSceen& currentSceen, GameSceen& gameMode)
 			if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
 			{
 				PlaySound(clickPressed);
-				StopMusicStream(menuMusic);
-				PlayMusicStream(gameLoopMusic);
 				currentSceen = GameSceen::GAMEMODE;
 			}
 		}
@@ -213,6 +206,14 @@ static void GetInput(GameSceen& currentSceen, GameSceen& gameMode)
 			{
 				PlaySound(clickPressed);
 				currentSceen = GameSceen::EXIT;
+			}
+		}
+		else if ((mouseX > versionPos.x && mouseX < versionPos.x + 215) && (mouseY > versionPos.y && mouseY < versionPos.y + 15))
+		{
+			if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+			{
+				PlaySound(easterEgg);
+				
 			}
 		}
 		else
@@ -356,7 +357,7 @@ static void DrawMain()
 	DrawTextEx(font, "Instructions", instructionsPos, fontSize, instrucrtionsSpacing, RAYWHITE);
 	DrawTextEx(font, "Credits", creditsPos, fontSize, 3, RAYWHITE);
 	DrawTextEx(font, "Exit", exitPos, fontSize, spacing, RAYWHITE);
-	DrawTextEx(font, "Version 0.3", versionPos, fontSize / 4.0f, spacing, RAYWHITE);
+	DrawTextEx(font, "Version 1.0", versionPos, fontSize / 4.0f, spacing, RAYWHITE);
 }
 
 void drawGameMode()
@@ -407,8 +408,6 @@ static void loseScreenInput(GameSceen& currentSceen, GameSceen gameMode)
 			PlaySound(clickPressed);
 			currentSceen = GameSceen::MENU;
 			loading = true;
-			StopMusicStream(gameLoopMusic);
-			PlayMusicStream(menuMusic);
 		}
 	}
 	else if ((mouseX > exitButtonPos.x && mouseX < exitButtonPos.x + exitButton.width) && (mouseY > exitButtonPos.y && mouseY < exitButtonPos.y + exitButton.height))
@@ -450,18 +449,12 @@ void loseScreen(Player player, GameSceen& currentSceen, GameSceen gameMode)
 void showGameMode(GameSceen& currentSceen, GameSceen& gameMode)
 {
 	drawGameMode();
-
-	UpdateMusicStream(menuMusic);
-
 	GetInput(currentSceen, gameMode);
 }
 
 void ShowMenu(GameSceen& currentSceen, GameSceen& gameMode)
 {
 	DrawMain();
-
-	UpdateMusicStream(menuMusic);
-
 	GetInput(currentSceen, gameMode);
 }
 
@@ -508,9 +501,6 @@ static void DrawInstrucions()
 void ShowInstructions(GameSceen& currentSceen, GameSceen& gameMode)
 {
 	DrawInstrucions();
-
-	UpdateMusicStream(menuMusic);
-
 	GetInput(currentSceen, gameMode);
 }
 
@@ -572,9 +562,6 @@ static void DrawCredits()
 void ShowCredits(GameSceen& currentSceen, GameSceen& gameMode)
 {
 	DrawCredits();
-
-	UpdateMusicStream(menuMusic);
-
 	GetInput(currentSceen, gameMode);
 }
 
@@ -616,8 +603,6 @@ static void GetPausedInput(GameSceen& currentSceen, GameSceen gameMode)
 			PlaySound(clickPressed);
 			currentSceen = GameSceen::MENU;
 			loading = true;
-			StopMusicStream(gameLoopMusic);
-			PlayMusicStream(menuMusic);
 		}
 	}
 	else if ((mouseX > exitButtonPos.x && mouseX < exitButtonPos.x + exitButton.width) && (mouseY > exitButtonPos.y && mouseY < exitButtonPos.y + exitButton.height))
@@ -677,40 +662,4 @@ void PauseGame(Player player, Player secondPlayer, Wall& topWall, Wall& bottomWa
 	GetPausedInput(currentSceen, gameMode);
 }
 
-static void DrawResults(Player player)
-{
-	Vector2 textPos;
-
-	smallWindowPos.x = (screenWidth / 2.0f) - (smallWindow.width / 2.0f);
-	smallWindowPos.y = (screenHeight / 2.0f) - (smallWindow.height / 2.0f);
-
-	DrawTexture(background, 0, 0, WHITE);
-	DrawTextureV(smallWindow, smallWindowPos, WHITE);
-	DrawTextureV(backButton, backButtonPos, WHITE);
-
-	textPos.x = (screenWidth / 2) - MeasureTextEx(font, "RESULTS", fontSize * 0.6f, spacing / 4.0f).x / 2.0f;
-	textPos.y = smallWindowPos.y + 30;
-	DrawTextEx(font, "RESULTS", textPos, fontSize * 0.6f, spacing / 4.0f, RAYWHITE);
-
-	textPos.x = (screenWidth / 2) - MeasureTextEx(font, "Your score:     ", fontSize * 0.4f, spacing / 8.0f).x / 2.0f;
-	textPos.y += 75;
-	DrawTextEx(font, "Your score: ", textPos, fontSize * 0.4f, spacing / 8.0f, RAYWHITE);
-
-	textPos.x += MeasureTextEx(font, "Your score: ", fontSize * 0.4f, spacing / 8.0f).x;
-	DrawTextEx(font, TextFormat("%01i", player.totalPoints), textPos, fontSize * 0.4f, spacing / 8.0f, RAYWHITE);
-
-	textPos.x = (screenWidth / 2) - MeasureTextEx(font, "High score:     ", fontSize * 0.4f, spacing / 8.0f).x / 2.0f;
-	textPos.y += 40;
-	DrawTextEx(font, "High score: ", textPos, fontSize * 0.4f, spacing / 8.0f, RAYWHITE);
-
-	textPos.x += MeasureTextEx(font, "High score: ", fontSize * 0.4f, spacing / 8.0f).x;
-	DrawTextEx(font, TextFormat("%01i", highScore), textPos, fontSize * 0.4f, spacing / 8.0f, RAYWHITE);
-}
-
-void ShowResults(Player& player, GameSceen& currentSceen, GameSceen& gameMode)
-{
-	DrawResults(player);
-
-	GetInput(currentSceen, gameMode);
-}
 

@@ -8,7 +8,6 @@ enum class GameSceen
 	SINGLE_PLAYER_GAME,
 	TWO_PLAYER_GAME,
 	GAMEMODE,
-	RESULTS,
 	PAUSE,
 	INSTRUCTIONS,
 	CREDITS,
@@ -26,9 +25,6 @@ namespace Globals
 
 	extern int totalWalls;
 	extern double lastWall;
-
-	extern Music menuMusic;
-	extern Music gameLoopMusic;
 
 	extern Font font;
 	extern float fontSize;

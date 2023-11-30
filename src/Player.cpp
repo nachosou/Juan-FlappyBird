@@ -20,6 +20,7 @@ void LoadPlayer(Player& player)
     player.height = 60;
     player.totalPoints = 0;
 
+    player.crash = LoadSound("Assets/Sounds/kaboom.wav");
     player.jump = LoadSound("Assets/Sounds/jump.wav");
 }
 

@@ -117,6 +117,7 @@ static void playerCollitionWithWalls(Player& player, Wall& topWall, Wall& bottom
 {
 	if (CheckCollisions(player, topWall) || CheckCollisions(player, bottomWall))
 	{
+		PlaySound(player.crash);
 		currentScreen = GameSceen::LOSE;
 	}
 }
@@ -125,11 +126,13 @@ static void twoPlayersCollitionWithWalls(Player& firstPlayer, Player& secondPlay
 {
 	if (CheckCollisions(firstPlayer, topWall) || CheckCollisions(firstPlayer, bottomWall))
 	{
+		PlaySound(firstPlayer.crash);
 		currentScreen = GameSceen::LOSE;
 	}
 
 	if (CheckCollisions(secondPlayer, topWall) || CheckCollisions(secondPlayer, bottomWall))
 	{
+		PlaySound(firstPlayer.crash);
 		currentScreen = GameSceen::LOSE;
 	}
 }
@@ -148,6 +151,7 @@ static void checkWindowCollition(Player& player, GameSceen& currentScreen)
 
 	if (player.position.y >= screenHeight + player.height)
 	{
+		PlaySound(player.crash);
 		currentScreen = GameSceen::LOSE;
 	}
 }
@@ -166,6 +170,7 @@ static void checkTwoPlayersWindowCollition(Player& firstPlayer, Player& secondPl
 
 	if (firstPlayer.position.y >= screenHeight + firstPlayer.height)
 	{
+		PlaySound(firstPlayer.crash);
 		currentScreen = GameSceen::LOSE;
 	}
 
@@ -181,6 +186,7 @@ static void checkTwoPlayersWindowCollition(Player& firstPlayer, Player& secondPl
 
 	if (secondPlayer.position.y >= screenHeight + secondPlayer.height)
 	{
+		PlaySound(firstPlayer.crash);
 		currentScreen = GameSceen::LOSE;
 	}
 }
