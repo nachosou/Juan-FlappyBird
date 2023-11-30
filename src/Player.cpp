@@ -22,6 +22,7 @@ void LoadPlayer(Player& player)
 
     player.crash = LoadSound("Assets/Sounds/kaboom.wav");
     player.jump = LoadSound("Assets/Sounds/jump.wav");
+    player.whatDoYouTouch = LoadSound("Assets/Sounds/easterEgg2.wav");
 }
 
 void LoadTwoPlayer(Player& secondPlayer)
@@ -38,10 +39,23 @@ void LoadTwoPlayer(Player& secondPlayer)
     secondPlayer.totalPoints = 0;
 
     secondPlayer.jump = LoadSound("Assets/Sounds/jump.wav");
+    secondPlayer.whatDoYouTouch = LoadSound("Assets/Sounds/easterEgg2.wav");
 }
 
 static void MovePlayer(Player& player)
 {
+    int mouseX = GetMouseX();
+    int mouseY = GetMouseY();
+    
+    if ((mouseX > player.position.x && mouseX < player.position.x + player.width) && (mouseY > player.position.y && mouseY < player.position.y + player.height))
+    {
+        if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+        {
+            SetSoundVolume(player.whatDoYouTouch, 1.0f);
+            PlaySound(player.whatDoYouTouch);
+        }
+    }
+
     if (IsKeyPressed(KEY_SPACE) && player.position.y > 0)
     {
         player.speed.y = player.jumpForce;
@@ -60,6 +74,18 @@ static void MovePlayer(Player& player)
 
 static void MoveTwoPlayers(Player& secondPlayer)
 {
+    int mouseX = GetMouseX();
+    int mouseY = GetMouseY();
+
+    if ((mouseX > secondPlayer.position.x && mouseX < secondPlayer.position.x + secondPlayer.width) && (mouseY > secondPlayer.position.y && mouseY < secondPlayer.position.y + secondPlayer.height))
+    {
+        if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+        {
+            SetSoundVolume(secondPlayer.whatDoYouTouch, 1.0f);
+            PlaySound(secondPlayer.whatDoYouTouch);
+        }
+    }
+
     if (IsKeyPressed(KEY_UP) && secondPlayer.position.y > 0)
     {
         secondPlayer.speed.y = secondPlayer.jumpForce;

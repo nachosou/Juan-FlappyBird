@@ -50,6 +50,8 @@ namespace Assets
 	extern Vector2 exitButtonPos;
 	extern Vector2 gitHubPos;
 	extern Vector2 gitHubSize;
+	extern Vector2 instagramPos;
+	extern Vector2 instagramSize;
 
 	extern bool isClicking;
 }

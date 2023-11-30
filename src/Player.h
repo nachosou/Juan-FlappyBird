@@ -23,6 +23,7 @@ struct Player
 	int thousandCounter{};
 	Sound jump{};
 	Sound crash{};
+	Sound whatDoYouTouch{};
 
 	Texture2D texture{};
 	Texture2D jumpingTexture{};

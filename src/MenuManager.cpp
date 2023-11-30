@@ -56,6 +56,8 @@ namespace Assets
 	extern Vector2 gitHubSize{};
 	extern Vector2 itchioPos{};
 	extern Vector2 itchioSize{};
+	extern Vector2 instagramPos{};
+	extern Vector2 instagramSize{};
 
 	extern bool isClicking = false;
 }
@@ -131,6 +133,11 @@ void InitMenu(Player player)
 
 	menuButtonPos.x = exitButtonPos.x - (menuButton.width + 15.0f);
 	menuButtonPos.y = 15.0f;
+
+	instagramSize.x = MeasureTextEx(font, "https://www.instagram.com/nacho.sou/", fontSize * 0.2f, spacing / 8.0f).x;
+	instagramSize.y = 10;
+	instagramPos.x = (screenWidth / 2) - instagramSize.x / 2.0f;
+	instagramPos.y = 600;
 }
 
 static void GetInput(GameSceen& currentSceen, GameSceen& gameMode)
@@ -336,6 +343,13 @@ static void GetInput(GameSceen& currentSceen, GameSceen& gameMode)
 			{
 				PlaySound(juanCredits);
 				OpenURL("https://juandigilio.itch.io");
+			}
+		}
+		else if (currentSceen == GameSceen::CREDITS && ((mouseX > instagramPos.x && mouseX < instagramPos.x + instagramSize.x) && (mouseY > instagramPos.y && mouseY < instagramPos.y + instagramSize.y)))
+		{
+			if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+			{
+				OpenURL("https://www.instagram.com/nacho.sou/");
 			}
 		}
 		else
